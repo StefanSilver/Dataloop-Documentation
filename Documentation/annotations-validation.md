@@ -8,6 +8,8 @@ Annotation validation enables project managers to enforce almost any kind of Ann
 - Minimum number of Labels required.
 
 ## Using Annotation Validation
+
+### Part 1: Adding the script file to the Dataset's Recipe
 To use the Annotation Validation capability of the Dataloop platforn, you need to go through a series of steps. Firstly, you need to [sign in and then log it into the veb-view of the platform](https://dataloop-production.auth0.com/login?state=hKFo2SBPMlg1clc2RkNWa1pfUEFvaXotSXI5OFd6NDNiQ1lBeaFupWxvZ2luo3RpZNkgSGVsWUVZUnFYZzVUREcxN09WdWdHeHlWam5NWFA1MW6jY2lk2SBGckcwSFpnYTFDSzVVVlVTSkp1RGtTRHFJdFBpZVdHVw&client=FrG0HZga1CK5UVUSJJuDkSDqItPieWGW&protocol=oauth2&response_type=id_token%20code&response_mode=form_post&redirect_uri=https%3A%2F%2Fgate.dataloop.ai%2Fadmit%3Fdefault&scope=openid%20email%20profile%20offline_access&nonce=_iAYyYyIqeAHngzZdkAsfdOUq0H5i6Nk&auth0Client=eyJuYW1lIjoiYXV0aDAuanMiLCJ2ZXJzaW9uIjoiOS4xMS4zIn0%3D).
 
 Once you log in, you should see your Dashboard, and all of your Projects (if you have any). You must then select the Project you want to work on, and to which you want to apply Annotation Validation. In this example, we will use the CreatureHunt Project which has the Creatures Dataset, and is used for an [advanced onboarding exercise](https://github.com/dataloop-ai/dtlpy-documentation/blob/main/onboarding/11_onboarding_exercise.md) we created for Developers who use our Python SDK. Once you selected your project, you should see something similar to this:
@@ -33,17 +35,38 @@ You need to now click on the ```Instructions``` tab, which should look like this
 
 ![image](https://user-images.githubusercontent.com/58508793/225671704-f40db559-95ce-4bd3-866c-8c26aed046d3.png)
 
-
-
-
-You now need to locate the "Annotation Verification" section and click on the upload  button to select and upload your JS validation script file: 
+You now need to locate the "Annotation Verification" section and click on the upload button to select and upload your JS validation script file: 
 
 ![image](https://user-images.githubusercontent.com/58508793/225672898-70977ad7-0ab2-4ec7-b5f5-2b3d7d18ae50.png)
 
+After clicking it, you will need to search for a .js file containing the Validation Script. 
 
-The file can be removed to allow changing versions, but only a single file can work in any recipe at a given time;
+If you don't have one, add the code below to a .js file - you can also just create a new `.txt` file, place this in that `.txt` file, and then change the extension of the file from `.txt` to `.js`. Here's the code to force only a single Annotation for each Item, in your dataset:
+```javascript
+function validateAnnotations(annotationsArr) {
+    //get all annotations in image
+    let result = {}
+    result.ok = true //or false
+    result.errorMessage = "some message to display to user"
+    result.errors = []
+	console.log(annotationsArr.length)
+    if (annotationsArr.length != 1){
+        result.errorMessage = `there are ${annotationsArr.length} annotations. should only be one.`
+        result.ok = false
+    }
 
-![image](https://user-images.githubusercontent.com/58508793/225602274-cf0772d5-180f-476e-9ac1-0048acbeb9ee.png)
+    return result
+}
+```
+Once you successfully select the file and upload it, you should see a prompt notifying you that the file was successfully uploaded. You should also be able to see the file directly under the Annotations Verification, as you can see below:
+
+![image](https://user-images.githubusercontent.com/58508793/225678251-57f9e5f4-a30f-44e3-85bb-a2a970631dbe.png)
+
+
+The file can be removed to allow changing versions; however, only a single script file can work in any Recipe at a given time. To remove a file, you simply need to click the `X` button you can observe to the right-side of the `.js` file you just uploaded:
+![image](https://user-images.githubusercontent.com/58508793/225679304-5720a8ef-f894-4e2b-9751-d3ad6cc870b2.png)
+
+### Part 2: Running the Annotation Verification Script
 
 3. [Create an annotation task](https://dataloop.ai/docs/create-task) that has this recipe as its instructions set;
 4. When entering the annotation studio from the task/assignment, the JS file is loaded in the background, ready to be run;
