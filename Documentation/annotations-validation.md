@@ -117,9 +117,12 @@ For example, since the script forces each Item in the Dataset to have exactly 1 
 
 Important!
 
-Once the validation script we added finish running, a message will pop up with a success/error message, as defined in the functions returned object;
+Once the validation script we added finish running, a message will pop up with a success/error message, as defined in the functions returned object:
+
 ![image](https://user-images.githubusercontent.com/58508793/225603663-6e4da15b-7c1e-4f09-b453-05b23f89637f.png)
+
 After running the script, specific Annotations that failed to comply with the validation scripts' rules, will be flagged as problematic. An Annotation-specific error message will be displayed in a tooltip on mouse hover.
+
 ![image](https://user-images.githubusercontent.com/58508793/225603802-e3ba3122-867c-4042-aa1f-96e8ee600659.png)
 
 
