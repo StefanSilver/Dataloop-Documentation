@@ -128,11 +128,11 @@ After running the script, specific Annotations that failed to comply with the va
 
 
 ### Script Guielines
-If you want to create any other custom scripts, we higly recommend you follow the guidelines below.
+If you want to create any other custom scripts, we higly recommend you follow the guidelines below, so you won't encounter any big problems.
 
-Your JS validation script should follow these guidelines:
+Your JS validation script should follow these rules:
 1. Validation must occur in a function named ```validateAnnotations```;
-2. The function should get Annotations object as an argument, which is an array of Annotation objects;
+2. The function should get an Annotations object as an argument, which is an array of Annotation objects;
 3. The function must return an object with the following interface:
 ```
 {
