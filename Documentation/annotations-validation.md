@@ -66,12 +66,55 @@ Once you successfully select the file and upload it, you should see a prompt not
 The file can be removed to allow changing versions; however, only a single script file can work in any Recipe at a given time. To remove a file, you simply need to click the `X` button you can observe to the right-side of the `.js` file you just uploaded:
 ![image](https://user-images.githubusercontent.com/58508793/225679304-5720a8ef-f894-4e2b-9751-d3ad6cc870b2.png)
 
+**Note:** Remember to SAVE CHANGES before exiting the page!
 ### Part 2: Running the Annotation Verification Script
+To test the Annotation Verification script we just added, we must create a new Annotation Task that has the same Recipe as the one we added the script file to. If you want to learn how to do that, visit the documentation that teaches you how to "[Create an annotation task](https://dataloop.ai/docs/create-task)".
 
-3. [Create an annotation task](https://dataloop.ai/docs/create-task) that has this recipe as its instructions set;
-4. When entering the annotation studio from the task/assignment, the JS file is loaded in the background, ready to be run;
-5. Create annotations and press the actions button to set COMPLETED or any other status - the JS file is being executed;
-6. As a user with Developer or Project-owner role, you will see a code-editor button, to open you JS file in code editor, edit it, and be able to run it.
+The short version to create a new Task, is to go to the left-side pannel on Dataloop's platform, click on `Workflows` and then click on `Tasks`. You should see a page similar to this one:
+
+![image](https://user-images.githubusercontent.com/58508793/225700194-f9389c79-e27d-428a-a05b-e31a9ab64412.png)
+
+You can now click to create a new Task. Then you can just press `Next` to the first page, after selectin a name for the Task. On the second step, you will need to select the Dataset you are working on - select the same one you used earlier. 
+
+![image](https://user-images.githubusercontent.com/58508793/225701840-e1c9e23d-25b0-4230-8601-c9575ee72fcd.png)
+
+On the `Instructions` page, which comes next, you need to select the Recipe on which you uploaded the `.js` script:
+
+![image](https://user-images.githubusercontent.com/58508793/225702328-7db4e828-3ad5-4972-8a3e-a687c9e36c0d.png)
+
+After that, just select the Contributors, and press next until you finish the Task creation. This may take a bit, but you should have a new task.
+
+Now, you need to enter the Annotation Studio. When entering the Annotation studio from the task/assignment page, the `.js` file we added  is loaded automatically in the background, ready to be run. 
+
+If you don't know how to get to the Annotation Studio, you must first go to `Workflows` -> `Tasks`, where you should see your Project's Tasks. Something similar to this:
+
+![image](https://user-images.githubusercontent.com/58508793/225705965-b82f0e8d-5806-477c-8ada-5d7de740fcf2.png)
+
+You must then double-click the Task you added the script file to, in our case it's "CreatureHunt-4". After double clicking it, an Assignments page will open up:
+
+![image](https://user-images.githubusercontent.com/58508793/225708096-fe1f4698-6ad7-497a-a10a-46be8ce05dd5.png)
+
+Now double-click that Assignment, and it should open up the Annotation Studio:
+![image](https://user-images.githubusercontent.com/58508793/225708703-5f78297b-f221-4d42-95b3-ba9efb4e5d22.png)
+
+
+Again, when entering the Annotation studio from the task/assignment, the `js` file we added will be loaded in the background, ready to be run. To see the script of that file, press the button on the right-side of the `Complete` button, highligted in the image below:
+
+![image](https://user-images.githubusercontent.com/58508793/225709295-df7a00d8-2386-47f1-a911-d339fbb13e8e.png)
+
+After clicking it, the script we added earlier should open up (you can also edit the script here):
+
+![image](https://user-images.githubusercontent.com/58508793/225709632-61872781-82d7-4bde-bf8e-05595e81a33f.png)
+
+
+If you now create Annotations and press the actions button to set COMPLETED or any other status - the JS file will be executed automatically. 
+
+For example, since the script forces each Item in the Dataset to have exactly 1 Annotation, you can try simply pressing the `Complete` button, without adding any Annotation. if you do this, you will see that the platform won't let you, because of the script you just added:
+
+![image](https://user-images.githubusercontent.com/58508793/225711248-0773ab38-ffb3-4f94-a8c2-b34460c9adeb.png)
+
+
+
 ![image](https://user-images.githubusercontent.com/58508793/225603459-715c79c1-8f58-4a03-ae5f-79f5cc6fcab9.png)
 -------
 ![image](https://user-images.githubusercontent.com/58508793/225603388-36579bf1-9373-4a18-8bce-d7697b1e1b85.png)
