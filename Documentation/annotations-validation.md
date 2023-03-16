@@ -115,19 +115,17 @@ For example, since the script forces each Item in the Dataset to have exactly 1 
 
 
 
-![image](https://user-images.githubusercontent.com/58508793/225603459-715c79c1-8f58-4a03-ae5f-79f5cc6fcab9.png)
--------
-![image](https://user-images.githubusercontent.com/58508793/225603388-36579bf1-9373-4a18-8bce-d7697b1e1b85.png)
+Important!
 
-7. Once the validation script finish running, a toast message will pop up with a success/error message, as defined in the functions returned object;
-
+Once the validation script we added finish running, a message will pop up with a success/error message, as defined in the functions returned object;
 ![image](https://user-images.githubusercontent.com/58508793/225603663-6e4da15b-7c1e-4f09-b453-05b23f89637f.png)
-
-8. In case of an error, specific annotations that failed to comply with the validation scripts' rules will be flagged as problematic. An annotation-specific error message will be displayed in a tooltip on mouse hover.
+After running the script, specific Annotations that failed to comply with the validation scripts' rules, will be flagged as problematic. An Annotation-specific error message will be displayed in a tooltip on mouse hover.
 ![image](https://user-images.githubusercontent.com/58508793/225603802-e3ba3122-867c-4042-aa1f-96e8ee600659.png)
 
 
+
 ### Script Guielines
+If you want to create any other custom scripts, we higly recommend you follow the guidelines below.
 
 Your JS validation script should follow these guidelines:
 1. Validation must occur in a function named ```validateAnnotations```;
