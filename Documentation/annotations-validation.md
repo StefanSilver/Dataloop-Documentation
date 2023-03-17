@@ -129,6 +129,7 @@ After running the script, specific Annotations that failed to comply with the va
 ![image](https://user-images.githubusercontent.com/58508793/225603802-e3ba3122-867c-4042-aa1f-96e8ee600659.png)
 
 You can find the `Issues` section by going to `Workflows` -> `Issues`:
+
 ![image](https://user-images.githubusercontent.com/58508793/225888970-a5128d6e-de8d-4811-a20e-12e76a1a696c.png)
 
 
