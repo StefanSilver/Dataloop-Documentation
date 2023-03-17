@@ -168,12 +168,12 @@ You can now use Javascript debugging - ```console.log/debugger``` and inspect it
 ![image](https://user-images.githubusercontent.com/58508793/225915639-e996dd1c-d716-47a2-95aa-b7c32aee00ab.png)
 
 
-To see coordinates of annotations in the studio, which can help analyze the scripts work/behavior, use the `_def` property.
+To see coordinates of Annotations in the studio, which can help analyze the scripts behaviour, use the `_def` property.
 ![image](https://user-images.githubusercontent.com/58508793/225604778-900bce2b-614b-4431-858e-af6469fe008b.png)
 
 ### Annotation Object
 
-When referring to Annotations received in the Annotations object, their properties comply with Dataloops' standard Annotation JSON format, which is [documented here in full](https://dataloop.ai/docs/annotation-json-format).
+When referring to Annotations received in the Annotations object, their properties comply with Dataloops' standard Annotation JSON format, which is [documented in full here](https://dataloop.ai/docs/annotation-json-format).
 
 
 ### Sample Validation Scripts
