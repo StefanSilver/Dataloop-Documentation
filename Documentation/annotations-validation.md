@@ -117,7 +117,7 @@ For example, since the script forces each Item in the Dataset to have exactly 1 
 
 
 
-Important!
+**Important!**
 
 Once the validation script we added finish running, a message will pop up with a success/error message, as defined in the functions returned object:
 
@@ -127,12 +127,17 @@ After running the script, specific Annotations that failed to comply with the va
 
 ![image](https://user-images.githubusercontent.com/58508793/225603802-e3ba3122-867c-4042-aa1f-96e8ee600659.png)
 
+You can find the `Issues` section by going to `Workflows` -> `Issues`:
+![image](https://user-images.githubusercontent.com/58508793/225888970-a5128d6e-de8d-4811-a20e-12e76a1a696c.png)
+
+
 
 
 ### Script Guielines
 If you want to create any other custom scripts, we higly recommend you follow the guidelines below, so you won't encounter any big problems.
 
 Your JS validation script should follow these rules:
+
 1. Validation must occur in a function named ```validateAnnotations```;
 2. The function should get an Annotations object as an argument, which is an array of Annotation objects;
 3. The function must return an object with the following interface:
@@ -147,17 +152,18 @@ Your JS validation script should follow these rules:
 
 
 ### Debugging
-To debug the validation script while in the annotation-studio, use Javascript debugging - ```console.log/debugger``` and inspect in your DevTools.
+To debug the validation script while in the Annotation-studio, use Javascript debugging - ```console.log/debugger``` and inspect in your DevTools.
 
 To see coordinates of annotations in the studio, which can help analyze the scripts work/behavior, use the _def property.
 ![image](https://user-images.githubusercontent.com/58508793/225604778-900bce2b-614b-4431-858e-af6469fe008b.png)
 
 ### Annotation Object
 
-When interpertrating and referring to annotations received in the Annotations object, their properties comply with Dataloops' standard annotation JSON format, as [documented here in full](https://dataloop.ai/docs/annotation-json-format).
+When referring to Annotations received in the Annotations object, their properties comply with Dataloops' standard Annotation JSON format, which is [documented here in full](https://dataloop.ai/docs/annotation-json-format).
 
 
 ### Sample Validation Scripts
+Here you can find a few Sample Validation scripts that we made for you. As you will observe, the first one is the one we used ealrier. Feel free to use all of them as they are, or create your own.
 
 Sample 1 - Only a single annotation can be on the item.
 ```
