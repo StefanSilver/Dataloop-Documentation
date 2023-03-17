@@ -154,9 +154,21 @@ Your JS validation script should follow these rules:
 
 
 ### Debugging
-To debug the validation script while in the Annotation-studio, use Javascript debugging - ```console.log/debugger``` and inspect in your DevTools.
+To debug the validation script you can use your browser's Developer Tools, while you are in the Annotation Studio tab. We recommend you use [Google Chrome](https://www.google.com/chrome/) if you want to do debugging. 
 
-To see coordinates of annotations in the studio, which can help analyze the scripts work/behavior, use the _def property.
+To go to your Developper tools, and debug, make sure you are in the Annotation Studio, and then click the `Customize and control Google Chrome`(the 3 dots on the top right-side of your browser) -> `More Tools` and then click `Developer tools`.
+***Note***: You can also press `Ctrl+Shift+I` to open the Developer tools pannel.
+
+![image](https://user-images.githubusercontent.com/58508793/225914131-8260c8b9-614e-4355-9225-020acdc25c5f.png)
+
+
+
+You can now use Javascript debugging - ```console.log/debugger``` and inspect it in your Developer Tools, to see any error messanges and issues that may occur with your script:
+
+![image](https://user-images.githubusercontent.com/58508793/225915639-e996dd1c-d716-47a2-95aa-b7c32aee00ab.png)
+
+
+To see coordinates of annotations in the studio, which can help analyze the scripts work/behavior, use the `_def` property.
 ![image](https://user-images.githubusercontent.com/58508793/225604778-900bce2b-614b-4431-858e-af6469fe008b.png)
 
 ### Annotation Object
