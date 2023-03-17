@@ -66,6 +66,7 @@ Once you successfully select the file and upload it, you should see a prompt not
 
 
 The file can be removed to allow changing versions; however, only a single script file can work in any Recipe at a given time. To remove a file, you simply need to click the `X` button you can observe to the right-side of the `.js` file you just uploaded:
+
 ![image](https://user-images.githubusercontent.com/58508793/225679304-5720a8ef-f894-4e2b-9751-d3ad6cc870b2.png)
 
 **Note:** Remember to SAVE CHANGES before exiting the page!
