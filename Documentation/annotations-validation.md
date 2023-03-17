@@ -13,7 +13,9 @@ Annotation validation enables project managers to enforce almost any kind of Ann
 To use the Annotation Validation capability of the Dataloop platforn, you need to go through a series of steps. Firstly, you need to [sign in and then log it into the veb-view of the platform](https://dataloop-production.auth0.com/login?state=hKFo2SBPMlg1clc2RkNWa1pfUEFvaXotSXI5OFd6NDNiQ1lBeaFupWxvZ2luo3RpZNkgSGVsWUVZUnFYZzVUREcxN09WdWdHeHlWam5NWFA1MW6jY2lk2SBGckcwSFpnYTFDSzVVVlVTSkp1RGtTRHFJdFBpZVdHVw&client=FrG0HZga1CK5UVUSJJuDkSDqItPieWGW&protocol=oauth2&response_type=id_token%20code&response_mode=form_post&redirect_uri=https%3A%2F%2Fgate.dataloop.ai%2Fadmit%3Fdefault&scope=openid%20email%20profile%20offline_access&nonce=_iAYyYyIqeAHngzZdkAsfdOUq0H5i6Nk&auth0Client=eyJuYW1lIjoiYXV0aDAuanMiLCJ2ZXJzaW9uIjoiOS4xMS4zIn0%3D).
 
 Once you log in, you should see your Dashboard, and all of your Projects (if you have any). You must then select the Project you want to work on, and to which you want to apply Annotation Validation. In this example, we will use the CreatureHunt Project which has the Creatures Dataset, and is used for an [advanced onboarding exercise](https://github.com/dataloop-ai/dtlpy-documentation/blob/main/onboarding/11_onboarding_exercise.md) we created for Developers who use our Python SDK. Once you selected your project, you should see something similar to this:
-https://github.com/dataloop-ai/dtlpy-documentation/blob/main/onboarding/11_onboarding_exercise.md
+
+
+![image](https://user-images.githubusercontent.com/58508793/225881605-748f570d-b20a-43bb-87d5-04e503f4d09f.png)
 
 You must then go on the left-side of your screen, so that the pannel opens up, and click on ```Data Management```:
 
