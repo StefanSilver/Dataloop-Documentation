@@ -32,7 +32,7 @@ import dtlpy as dl
 
 import numpy as np
 
-item = dl.items.get(item_id='ITEM ID')
+item = dl.items.get(item_id='<item_id>')
 
 # Get all polygons
 
