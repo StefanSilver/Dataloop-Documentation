@@ -27,72 +27,38 @@ This Guide will show developers how they can implement Semantic Segmentation in 
 [![image](https://user-images.githubusercontent.com/58508793/226386974-10b9445d-5ddc-48e4-89d4-4bc17f30c61f.png)](https://dataloop.ai/video/tutorial-semantic-segmentation/)
 
 ## Python SDK Semantic Segmentation
+```python
 import dtlpy as dl
 
-2
 import numpy as np
 
-3
-
-
-4
 item = dl.items.get(item_id='ITEM ID')
 
-5
-
-
-6
 # Get all polygons
 
-7
 # Pay attantion each polygon must have different object ID 
 
-8
-
-
-9
 filters = dl.Filters(resource=dl.FiltersResource.ANNOTATION,
-
-10
                     field='type',
-
-11
                     values=dl.AnnotationType.POLYGON)
 
-12
-
-
-13
 annotations = item.annotations.list(filters=filters)
-
 
 image = np.zeros((item.height, item.width), dtype=np.uint8)
 
-
-
-
-
 for annotation in annotations:
-
 
    # convert Polygon to Segmentation
 
-
    seg = dl.Segmentation.from_polygon(geo=annotation.geo,
-
 
                                       label=annotation.label,
 
-
                                       shape=(item.height, item.width),
-
 
                                       attributes=annotation.attributes)
 
+# Add Segmentation geo to Image with the polygon object_id 
+image = np.where(seg.geo == 1, annotation.object_id, image)
 
-   # Add Segmentation geo to Image with the polygon object_id 
-
-
-   image = np.where(seg.geo == 1, annotation.object_id, image)
-
-
+```
