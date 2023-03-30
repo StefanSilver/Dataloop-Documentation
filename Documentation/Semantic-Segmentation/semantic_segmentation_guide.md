@@ -27,13 +27,41 @@ This Guide will show developers how they can implement Semantic Segmentation in 
 [![image](https://user-images.githubusercontent.com/58508793/226386974-10b9445d-5ddc-48e4-89d4-4bc17f30c61f.png)](https://dataloop.ai/video/tutorial-semantic-segmentation/)
 
 ## Python SDK Semantic Segmentation
+In this section, we will work on implementing a simple example of Semantic Segmentation in Dataloop's Python SDK.
+
+We must first import the Python Libraries we are going to use, Numpy and dtlpy (Dataloop's Package). If you don't have dtlpy installed, [visit this installation guide](https://github.com/dataloop-ai/dtlpy-documentation/blob/main/onboarding/01_python_sdk_installation.md). 
+
 ```python
 import dtlpy as dl
 
 import numpy as np
+```
+Then, we have to log in to the platform, using the code below, which will open a new tab for you to log in. If you don't have an account, [learn how to make one](https://github.com/dataloop-ai/dtlpy-documentation/blob/main/onboarding/02_login_and_project_and_dataset_creation.md).
+```python
+#Logging in to Dataloop (checks if token expired ~24h expiration time for token)
 
+if dl.token_expired():
+   dl.login()
+#you can also use the simple login: 
+#dl.login()
+```
+We must then `Get` the Project and Dataset we are going to use.
+```python
+project = dl.projects.get(project_name='<project_name>')
+dataset = project.datasets.get(dataset_name='<dataset_name>')
+# to open the Dataset in web 
+dataset.open_in_web()
+```
+A good way to find the Item ID is to `open_in_web` your Dataset, and then double-clicking your Dataset in the web UI and  clicking the Item you want to use. You will see the item ID open in the right-side of the Web-UI of Dataloop.
+![image](https://user-images.githubusercontent.com/58508793/228821855-9ad287b3-d4df-45d5-9129-329715f0b2f5.png)
+
+Make sure you have at least one Item in the dataset, otherwise upload one. After finding your Item's ID, we can get that Item in a variable, as seen below.
+```python
 item = dl.items.get(item_id='<item_id>')
+```
+Now we must create a Filter that will search for all Polygon Annotations, and then get a list of those Annotations in a variable:
 
+```python
 # Get all polygons
 
 # Pay attantion each polygon must have different object ID 
@@ -43,7 +71,10 @@ filters = dl.Filters(resource=dl.FiltersResource.ANNOTATION,
                     values=dl.AnnotationType.POLYGON)
 
 annotations = item.annotations.list(filters=filters)
+```
+We can then create a new image, filled with zeros, of the item height and width, and then convert each Polygon Annotation to Segmantation, using a `for` loop.
 
+```python
 image = np.zeros((item.height, item.width), dtype=np.uint8)
 
 for annotation in annotations:
@@ -58,6 +89,9 @@ for annotation in annotations:
 
                                       attributes=annotation.attributes)
 
+```
+Now, we can simply add the Segmentation to the image variable.
+```python
 # Add Segmentation geo to Image with the polygon object_id 
 image = np.where(seg.geo == 1, annotation.object_id, image)
 
