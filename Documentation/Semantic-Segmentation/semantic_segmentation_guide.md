@@ -96,3 +96,18 @@ Now, we can simply add the Segmentation to the image variable.
 image = np.where(seg.geo == 1, annotation.object_id, image)
 
 ```
+
+## Final Words
+
+Semantic segmentation is a very useful tool that you should learn to use. Dataloop can help you with that.
+
+We welcome you to continue your journey with Dataloop by using the following links: 
+
+1. [Dataloop Python SDK Release Notes](https://dataloop.ai/docs/sdk-release-notes)
+2. [Dataloop Platform UI Documentation](https://dataloop.ai/docs/welcome)
+3. [Structured, Public, and Fully Verified to Work Dataloop GitHub Developer Community Space](https://github.com/dataloop-ai-apps)
+4. [Unstructured, Public Dataloop GitHub Space](https://github.com/dataloop-ai)
+
+If you have any questions, we encourage you to submit your question to the [Dataloop Developer Community](https://github.com/dataloop-ai-apps/dataloop-devs/discussions/new?category=q-a). One of our  Developer Success Engineers or someone from the community will help as quickly as they can.
+
+You can submit issues to our Support team by opening a question through the support widget located in the upper right corner of the platform UI. Our team is available to assist you with any inquiries you may have and we are happy to help!
