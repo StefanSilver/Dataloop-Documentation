@@ -52,13 +52,42 @@ dataset = project.datasets.get(dataset_name='<dataset_name>')
 # to open the Dataset in web 
 dataset.open_in_web()
 ```
-A visual way to find the Item ID is to `open_in_web` your Dataset then double-click your Dataset in the web UI to open it.  From there, you can click the Item you want to use. You will see the item ID open in the right-side of the Web-UI of Dataloop.
+**Note:** To see all of the Datasets available in your Project, use `project.datasets.list()`.
+
+
+A visual way to find the Item ID is to `open_in_web` your Dataset then double-click your Dataset in the web UI to open it.  Once the command is executed, a new screen will open. You must got to the pannel on the left of the screen -> Data Management -> Dataset and then click the Dataset you are using; then you can click the Item you want to use. You will see the item ID open in the right-side of the Web-UI of Dataloop.
 ![image](https://user-images.githubusercontent.com/58508793/228821855-9ad287b3-d4df-45d5-9129-329715f0b2f5.png)
 
 Make sure you have at least one Item in the Dataset, otherwise upload one. After finding your Item's ID, we can set that Item ID as a variable `item`.  See below.
 ```python
 item = dl.items.get(item_id='<item_id>')
 ```
+***Important!***--> If you don't have a Polygon Annotation created for your Item, you can create a basic one, using the code snippet below. It should work as it is, but if you want, you can modify the geo parameters. Also, as you will notice, this code will create both a [Polygon and a Polyline Annotation](https://developers.dataloop.ai/tutorials/annotations_image/polygon_and_polyline/chapter/).
+
+```python
+
+# Create a builder instance
+builder = item.annotations.builder()
+# Create polygon annotation with label
+# with array of points: [[x1, y1], [x2, y2], ..., [xn, yn]]
+builder.add(annotation_definition=dl.Polygon(geo=[[100, 50],
+                                                  [80, 120],
+                                                  [110, 130]],
+                                             label='my-label'))
+# create Polyline annotation with label
+builder.add(annotation_definition=dl.Polyline(geo=[[100, 50],
+                                                   [80, 120],
+                                                   [110, 130]],
+                                              label='my-label'))
+# Upload polygon to the item
+item.annotations.upload(builder)
+
+```
+If everything goes well, you should get an output similar to this:
+```python
+AnnotationCollection(item=Item(dataset_url='https://gate.dataloop.ai/api/v1/datasets/63e6283b4a03c631b54725ec', created_at='2023-02-14T10:58:21.000Z', dataset_id='63e6283b4a03c631b54725ec', filename='/098-696200529-scale10.00-k_euler_a-sd-v1-5-fp16.png', name='098-696200529-scale10.00-k_euler_a-sd-v1-5-fp16.png', type='file', id='63eb694dbb4d84844887871d', spec=None, creator='myfuncont@gmail.com', _description=None, annotations_count=0), annotations=[Annotation(id='642f123bb532f66d61a0972a', item_id='63eb694dbb4d84844887871d', creator='myfuncont@gmail.com', created_at='2023-04-06T18:40:59.578Z', type='segment', item_height=1024, item_width=1024, label_suggestions=None, _start_frame=0, _start_time=0), Annotation(id='642f123bb532f6f5bfa09729', item_id='63eb694dbb4d84844887871d', creator='myfuncont@gmail.com', created_at='2023-04-06T18:40:59.576Z', type='polyline', item_height=1024, item_width=1024, label_suggestions=None, _start_frame=0, _start_time=0)])
+```
+
 Now we must create a Filter that will search for all Polygon Annotations and then assign the list of those Annotations as a variable `annotations`:
 
 ```python
@@ -96,6 +125,7 @@ Now, we can simply add the Segmentation to the `image` variable.
 image = np.where(seg.geo == 1, annotation.object_id, image)
 
 ```
+After doing that, you can open the Item in the Web UI of the platform, to see your Semantic Segmentation Annotation.
 
 ## Final Words
 
