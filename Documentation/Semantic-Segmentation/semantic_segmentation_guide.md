@@ -133,14 +133,14 @@ Now the `image` variable should have Semantic Segmentation added to it. To check
 ```python
 print(seg)
 ```
-If the type of the Object is Segmentation, it means that you successfully created a Semantic Segmentation! The out put should look like it's seen below.
+If the type of the Object is Segmentation, it means that you successfully created a Semantic Segmentation! The output should look like what you see below.
 ```python
 <dtlpy.entities.annotation_definitions.segmentation.Segmentation object at 0x00000202A8F0C700>
 
 ```
 ## Final Words
 
-Semantic segmentation is a very useful tool that you should learn to use. Dataloop can help you with that.
+Semantic Segmentation can be a very useful tool. Dataloop is here to help you learn how to use it on our platform.
 
 We welcome you to continue your journey with Dataloop by using the following links: 
 
