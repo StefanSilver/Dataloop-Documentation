@@ -92,49 +92,66 @@ You can check if the Polygon Annotation was succesfully added in your Item, by o
 #You can check the Annotation was added to your image using this line
 item.open_in_web()
 ```
-Now we must create a Filter that will search for all Polygon Annotations and then assign the list of those Annotations as a variable `annotations`.
+Now we must create a Filter that will search for all Polygon Annotations on Items in the Dataset and convert those polygons to semantice masks.
 
 ```python
-# Get all polygons
+import dtlpy as dl
+import numpy as np
 
-# Pay attention each polygon must have different object ID 
-# Here we create a filter that will look for all Polygon Annotations
-filters = dl.Filters(resource=dl.FiltersResource.ANNOTATION,
-                    field='type',
-                    values=dl.AnnotationType.POLYGON)
-#we get a list of the annotations of a specific item
-annotations = item.annotations.list(filters=filters)
-```
-We can then create a new image, filled with zeros, of the item height and width, and then convert each Polygon Annotation to Segmantation, using a `for` loop.
+project = dl.projects.get(project_name='Semantic Segmentation Code Test')
 
-```python
-image = np.zeros((item.height, item.width), dtype=np.uint8)
+dataset = project.datasets.get(dataset_name='Images')
 
-for annotation in annotations:
+# From the Docs - https://sdk-docs.dataloop.ai/en/latest/tutorials/annotations_image/segmentation/chapter.html#init-segmentation
 
-   # convert Polygon to Segmentation
+# Goes to the Dataset and gets all items then looks for all annotations of the Polygon type.  Converts all of those polygons to Semantic Masks
 
-   seg = dl.Segmentation.from_polygon(geo=annotation.geo,
+from PIL import Image
 
-                                      label=annotation.label,
+filters = dl.Filters()
+# set resource
+filters.resource = 'items'
 
-                                      shape=(item.height, item.width),
+# add filter - only files
 
-                                      attributes=annotation.attributes)
+filters.add(field='type', values='file')
 
-```
-Now, we can simply add the Segmentation to the `image` variable.
-```python
-# Add Segmentation geo to Image with the polygon object_id 
-image = np.where(seg.geo == 1, annotation.object_id, image)
+# add annotation filters - only Items with polygon annotations
 
-```
-Now the `image` variable should have Semantic Segmentation added to it. To check the type of the `seg` object, you can simply print it. 
-```python
-print(seg)
+filters.add_join(field='type', values='segment')
+
+# get results and add them to a page
+
+pages = dataset.items.list(filters=filters)
+
+# loop through all Items in the page and convert the polygon to a semantic mask
+
+for page in pages:
+    for item in page:
+        print('item=' + item.id)
+        annotations = item.annotations.list()
+        item = dataset.items.get(item_id=item.id)
+        buffer = item.download(save_locally=False)
+        img = Image.open(buffer)
+        builder = item.annotations.builder()
+        # run over all annotation in item
+        for annotation in annotations:
+            # print(annotation)
+            if annotation.type == 'segment':
+                print("Found polygon annotation - id:", annotation.id)
+                builder.add(dl.Segmentation.from_polygon(geo=annotation.annotation_definition.geo,
+                                                         # binary mask of the annotation
+                                                         label=annotation.label,
+                                                         shape=img.size[::-1]  # (h,w)
+                                                         ))
+                annotation.delete()
+        item.annotations.upload(annotations=builder)
 ```
 If the type of the Object is Segmentation, it means that you successfully created a Semantic Segmentation! The output should look like what you see below.
 ```python
+
+**Stefan** Have a look at this and let me know when we can discuss.  I want to show you a few things that are required to make this work as advertised.
+
 <dtlpy.entities.annotation_definitions.segmentation.Segmentation object at 0x00000202A8F0C700>
 
 ```
