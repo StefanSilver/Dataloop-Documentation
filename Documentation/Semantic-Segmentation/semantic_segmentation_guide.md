@@ -147,11 +147,17 @@ for page in pages:
                 annotation.delete()
         item.annotations.upload(annotations=builder)
 ```
-If you successfully run the code above, the output should look like what you see below.
+If you successfully run the code above, the console output should look similar to what you see below.
+```python
+Download Items: 100%|████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  9.45it/s]
+Found polygon annotation - id: 6454bd4fa55a8064d8edf0dd
+Iterate Pages: 100%|█████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  1.71it/s]
+```
+And if you use `item.open_in_web()` the new Semantic Segmentation Annotation should look like this:
 
 ![image](https://user-images.githubusercontent.com/58508793/236408901-9de67ca3-301d-4c3e-98c5-e42b117f7990.png)
 
-The Polygon Annotation was successfully converted to a Semantic Segmentation Annotation. 
+You have successfully converted the Polygon Annotation to a Semantic Segmentation Annotation! 
 
 
 ## Final Words
