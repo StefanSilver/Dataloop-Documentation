@@ -77,7 +77,7 @@ builder = item.annotations.builder()
 builder.add(annotation_definition=dl.Polygon(geo=[[100, 50],
                                                   [80, 120],
                                                   [110, 130]],
-                                             label='my-label'))
+                                             label='SomePoly'))
 
 # Upload polygon to the item
 item.annotations.upload(builder)
@@ -92,15 +92,15 @@ You can check if the Polygon Annotation was succesfully added in your Item, by o
 #You can check the Annotation was added to your image using this line
 item.open_in_web()
 ```
-Now we must create a Filter that will search for all Polygon Annotations on Items in the Dataset and convert those polygons to semantice masks.
+For the Annotation we just created, the Polygon should just be a big Triangle on the screen, as you can see below.
+
+![image](https://user-images.githubusercontent.com/58508793/236408237-97b0876d-313e-435e-a72b-9965f671f39d.png)
+
+
+
+Now we must create a Filter that will search for all Polygon Annotations on Items in the Dataset and convert those polygons to semantic masks. Just take the code below as it is (no changes required) and use it to look for all Annotations of Polygon Types and convert them into Semantic Segmentation Annotations.
 
 ```python
-import dtlpy as dl
-import numpy as np
-
-project = dl.projects.get(project_name='Semantic Segmentation Code Test')
-
-dataset = project.datasets.get(dataset_name='Images')
 
 # From the Docs - https://sdk-docs.dataloop.ai/en/latest/tutorials/annotations_image/segmentation/chapter.html#init-segmentation
 
@@ -147,17 +147,15 @@ for page in pages:
                 annotation.delete()
         item.annotations.upload(annotations=builder)
 ```
-If the type of the Object is Segmentation, it means that you successfully created a Semantic Segmentation! The output should look like what you see below.
-```python
+If you successfully run the code above, the output should look like what you see below.
 
-**Stefan** Have a look at this and let me know when we can discuss.  I want to show you a few things that are required to make this work as advertised.
+![image](https://user-images.githubusercontent.com/58508793/236408901-9de67ca3-301d-4c3e-98c5-e42b117f7990.png)
 
-<dtlpy.entities.annotation_definitions.segmentation.Segmentation object at 0x00000202A8F0C700>
+The Polygon Annotation was successfully converted to a Semantic Segmentation Annotation. 
 
-```
+
 ## Final Words
-
-Semantic Segmentation can be a very useful tool. Dataloop is here to help you learn how to use it on our platform.
+Semantic Segmentation can be a very useful tool. We hope this guide helped you learn how to use it as part of our platform.
 
 We welcome you to continue your journey with Dataloop by using the following links: 
 
