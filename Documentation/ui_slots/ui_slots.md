@@ -34,6 +34,11 @@ After doing this, you need to save your python file, and then archive it to .zip
 
 ![image](https://user-images.githubusercontent.com/58508793/236432294-24060a78-ad08-49af-8611-a46a2240f31a.png)
 
+Also create a requirements.txt file, where you place each external library that you require to run your codebase. Place one library on each line, as seen below.
+
+![image](https://user-images.githubusercontent.com/58508793/236442993-c8483669-5f22-46a8-ad98-1c612aae18a0.png)
+
+
 ## Adding an UI Slot
 
 Before you can add a UI Slot, you need to go to the Application Hub in Dataloop's Web UI. To do that, you need to go to the left side of the screen, and click the `Application (FAAS)` drop-down button. There you will find the Application Hub. Click on it.
