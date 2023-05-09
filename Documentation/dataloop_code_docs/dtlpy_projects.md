@@ -4,7 +4,7 @@ In this section we will describe all of the methods (or functions) that can be a
 
 Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jump to the function/method you want to explore.
 
-[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | 
+[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | [dl.projects.checkout()](#checkout)
 
 -------------------------------------------
 ## Import dtlpy and Log In to Dataloop
@@ -30,7 +30,7 @@ The complete description for this method can be seen below:
 
 ### get()
 
-**Definition:**  ```python get(project_name: str=None, project_id: str=None, checkout: bool=False, fetch: bool=None, log_error=True) -> entities.Project ```
+**Definition:**  ` get(project_name: str=None, project_id: str=None, checkout: bool=False, fetch: bool=None, log_error=True) -> entities.Project `
 
 **Gets a Project object from Dataloop.**
 
@@ -81,7 +81,7 @@ The `dl.projects.create()` allows you to create a new Project in the Dataloop Pl
 You can see the complete description of the `.create()` method, along with its parameters and examples, below:
 
 ### create()
-**Definition:** ```python create(project_name: str, checkout: bool=False) -> entities.Project ```
+**Definition:** ` create(project_name: str, checkout: bool=False) -> entities.Project `
 
 ***Creates a new Project.***
 
@@ -146,7 +146,7 @@ The `dl.projects.list_members` method is used to show all of the members that ha
 
 You can see all of the details about this method, below:
 ### list_members()
-**Definition:**```python list_members(project: entities.Project, role: entities.MemberRole=None)```
+**Definition:**` list_members(project: entities.Project, role: entities.MemberRole=None)`
 
 Get a list of the members inside of a Project.
 
@@ -189,7 +189,7 @@ The `dl.projects.add_member()` method is used to add additional members to the P
 Below, you can see all of the details of the `add_member()` method, and an example of its use.
 
 ### add_member()
-**Definition:** add_member(email: str, project_id: str, role: entities.MemberRole=entities.MemberRole.DEVELOPER)
+**Definition:** `add_member(email: str, project_id: str, role: entities.MemberRole=entities.MemberRole.DEVELOPER)`
 
 Add a member to the project.
 
@@ -249,4 +249,38 @@ After executing this code, you will get a list of details about all users that a
 
 -------------------------------------------
 ## <a name="checkout"></a> dl.projects.checkout()
-The `dl.projects.checkout()` method lets you change the current project you are working on with another one.
+The `dl.projects.checkout()` method lets you change the current Project you are working on with another one.
+
+You can see this method and its detailed description below:
+
+### checkout()
+**Definition:** ` checkout(identifier: str=None, project_name: str=None, project_id: str=None, project: entities.Project=None)`
+
+***Checkout (or switch) to a project to work on.***
+
+**Prerequisites:** All users can checkout.
+
+You must provide at least ONE of the following params: `project_id`, `project_name`.
+
+**param str identifier**
+- Project name or partial id that you wish to switch
+
+**param str project_name**
+- The Name of the Project
+
+**param str project_id**
+- The Id of the project
+
+**param dtlpy.entities.project.Project project**
+- project object
+
+**Example:**
+```python
+dl.projects.checkout(project_id='project_id')
+```
+You can see a working example below:
+```python
+# You can find all of your Projects and their IDs using dl.projects.list()
+dl.projects.checkout(project_id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242')
+```
+This command won't have any Output, but your Project will be switched to the Project you added to `project_id`.
