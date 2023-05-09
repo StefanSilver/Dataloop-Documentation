@@ -4,7 +4,7 @@ In this section we will describe all of the methods (or functions) that can be a
 
 Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jumpt to the function/method you want to explore.
 
-[dl.projects.get()](#get) | [dl.projects.create()](#create)
+[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list)
 
 ## Import dtlpy and Log In to Dataloop
 The first thing you must do whenever you use Dataloop's Python SDK package `dtlpy` is to import the package and log in to Dataloop. If you don't have an account, [please register one here](https://console.dataloop.ai/welcome) or [read our Log In Onboarding](https://developers.dataloop.ai/onboarding/02_login_and_project_and_dataset_creation/). Also, if you don't have the `dtlpy` package installed, [read our Installation Onboarding](https://developers.dataloop.ai/onboarding/01_python_sdk_installation/).
@@ -109,4 +109,35 @@ dl.projects.create(project_name='Test_Project')
 If the code executes right, you should get the following output:
 ```python
 Project(created_at=1683624625465, creator='email@gmail.com', id='cfe67f7b-62cf-437b-8e05-8f60a4ef7c3a', name='Test_Project', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])
+```
+
+
+## <a name="list"></a> dl.projects.list() 
+
+## dl.projects.list()
+The `dl.projects.list()` is used to show all of the Project objects in the current Organization. If you have only one Organization, that means it will return a list of all of your Projects.
+
+You can see the complete description of the `.create()` method, along with its parameters and an example, below:
+
+### list()
+
+**Definition:** list() -> miscellaneous.List[entities.Project]
+
+**Gets the user's project list**
+
+**Prerequisites:** You must be a superuser to list all users' projects.
+
+**return**
+    - List of Project objects
+
+Example:
+```python 
+dl.projects.list()
+```
+
+If you run the example code above, you will get an output that is similar to what you see below:
+```python
+[Project(created_at=1674492335504, creator='email@gmail.com', id='2ac5b20b-ec3b-4058-9d2f-cf6e41090b04', name='My-First-Project1', feature_constraints=[{'name': 'downloadJsons', 'quota': 0, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 0, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 0, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 0, 'title': 'Create Driver'}]),
+ Project(created_at=1675184952443, creator='email@dataloop.ai', id='334469a6-a90c-4375-947b-a2810d7d08d8', name='Cool Project', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}]),
+ Project(created_at=1676027918381, creator='email@gmail.com', id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242', name='CreatureHunt', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])]
 ```
