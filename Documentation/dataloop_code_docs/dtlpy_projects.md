@@ -39,16 +39,16 @@ The complete description for this method can be seen below:
 You must check out to a project or provide at least one of the following params: `project_id`, `project_name`
 
 **param str project_name**
-    - optional - search by name
+    - (optional) search by name
 
 **param str project_id**
-    - optional - search by id
+    - (optional) search by id
 
 **param bool checkout**
     - set the project as a default project object (cookies)
 
 **param bool fetch**
-    - optional - fetch entity from platform (True), default taken from cookie
+    - (optional)fetch entity from platform (True), default taken from cookie
 
 **param bool log_error**
     - optional - show the logs errors
