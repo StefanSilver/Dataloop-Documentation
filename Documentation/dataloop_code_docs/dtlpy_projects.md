@@ -283,4 +283,10 @@ You can see a working example below:
 # You can find all of your Projects and their IDs using dl.projects.list()
 dl.projects.checkout(project_id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242')
 ```
-This command won't have any Output, but your Project will be switched to the Project you added to `project_id`.
+Or you can use the Project's name instead of the ID:
+```python
+# You can find all of your Projects and their IDs using dl.projects.list()
+dl.projects.checkout(project_name'CreatureHunt')
+```
+This command doesn't have any visible Output, but your Project will be switched to the Project you added to `project_id` or `project_name`.
+
