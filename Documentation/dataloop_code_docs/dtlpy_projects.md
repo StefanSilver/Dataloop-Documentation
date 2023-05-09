@@ -356,3 +356,90 @@ dl.projects.remove_member(project_id='project_id', email='user@dataloop.ai')
 ```
 After runing the example above (after changing the `project_id` with your Project's ID and the `email` variable with the email of the email of the user you want to remove, you will get a list of all of the remaining users of that Project, without the user you just removed, which means that you successfully removed a memeber from the Project.
 
+-------------------------------------------
+## <a name="update"></a> dl.projects.update()
+The `dl.projects.update()` method allows you to update the details of a Project, after you changed something it it.
+
+You can find the details of this method, below.
+
+### update()
+**Definition:** `update(project: entities.Project, system_metadata: bool=False) -> entities.Project`
+
+***Updates a Project's information (e.g., name, member roles, etc.).***
+
+**Prerequisites:** Anyone can Update a Projects.
+
+**param dtlpy.entities.project.Project project**
+- project object
+
+**param bool system_metadata**
+- optional - True, if you want to change metadata system
+
+**return**
+- Project object
+
+**rtype**
+- dtlpy.entities.project.Project
+
+**Example:**
+```python
+project = dl.projects.update(project='project_entity')
+```
+You can see an example of this code below:
+```python 
+dl.projects.update(project = 'CreatureHunt')
+```
+-------------------------------------------
+## <a name="update_member"></a> dl.projects.update_member()
+The `dl.projects.update_member()` method allows you to update the details of a memeber, including changing its role. However you need to be the Owner of the Project, to do this.
+
+You can see the full details about this method, and an example of its use, below.
+### update_member()
+**Definition:** `update_member(email: str, project_id: str, role: entities.MemberRole=entities.MemberRole.DEVELOPER)`
+
+***Updates a member's information/details in a specific Project.***
+
+Prerequisites: You must be in the role of an Owner to update a member.
+
+**param str email**
+- member email
+
+**param str project_id**
+- The Id of the project
+
+**param role**
+- The required role for the user. Use the enum dl.MemberRole
+
+**return**
+- dict that represent the user
+
+**rtype**
+- dict
+
+**Example:**
+```python
+dl.projects.update_member(project_id='project_id', email='user@dataloop.ai', role=dl.MemberRole.DEVELOPER)
+```
+A working example will look like this:
+```python
+dl.projects.update_member(project_id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242',email='email@gmail.com',role=dl.MemberRole.DEVELOPER)
+```
+The output of this code will  be a dict list of all members that are part of the Project, and their roles. For example, using that code, we changed the role of `email@gmail.com` from the ANNOTATOR role, which he had previously, to the DEVELOPER role (engineer in the printed details below), which he has now, after our change.
+```python
+[{'createdAt': 1683646354858,
+  'id': 'email@gmail.com',
+  'username': 'email@gmail.com',
+  'firstName': 'email@gmail.com',
+  'email': 'email@gmail.com',
+  'domain': 'gmail.com',
+  'lastName': '',
+  'avatar': 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png',
+  'role': 'engineer',
+  'lastLogin': None,
+  'guest': None,
+  'membershipType': 'member',
+  'membershipEntityId': '4c74c1b5-e9cb-4294-b9d5-cbfa13eda242',
+  'denyMembersManagement': None}]
+```
+
+## Final Words
