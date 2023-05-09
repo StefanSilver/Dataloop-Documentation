@@ -4,7 +4,8 @@ In this section we will describe all of the methods (or functions) that can be a
 
 Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jump to the function/method you want to explore.
 
-[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members)
+[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | 
+
 
 ## Import dtlpy and Log In to Dataloop
 The first thing you must do whenever you use Dataloop's Python SDK package `dtlpy` is to import the package and log in to Dataloop. If you don't have an account, [please register one here](https://console.dataloop.ai/welcome) or [read our Log In Onboarding](https://developers.dataloop.ai/onboarding/02_login_and_project_and_dataset_creation/). Also, if you don't have the `dtlpy` package installed, [read our Installation Onboarding](https://developers.dataloop.ai/onboarding/01_python_sdk_installation/).
@@ -144,7 +145,7 @@ If you run the example code above, you will get an output that is similar to wha
 The `dl.projects.list_members` method is used to show all of the members that have access to a give Project. 
 
 You can see all of the details about this method, below:
-
+### list_members()
 **Definition:**```python list_members(project: entities.Project, role: entities.MemberRole=None)```
 
 Get a list of the members inside of a Project.
@@ -181,3 +182,69 @@ project = dl.projects.get(project_name='CreatureHunt') # you need to first get
 dl.projects.list_members(project, role=dl.MemberRole.OWNER) 
 ```
 The code above will list all users with OWNER role in the Project you selected.
+
+## <a name="add_member"></a> dl.projects.add_member()
+The `dl.projects.add_member()` method is used to add additional members to the Project you are currently working on, and designating those new members' role.
+
+Below, you can see all of the details of the `add_member()` method, and an example of its use.
+
+### add_member()
+**Definition:** add_member(email: str, project_id: str, role: entities.MemberRole=entities.MemberRole.DEVELOPER)
+
+Add a member to the project.
+
+**Prerequisites:** You must be in the role of an owner to add a member to a project.
+
+**param str email**
+   - member email
+
+**param str project_id**
+   - The Id of the project
+
+**param role**
+   - The required role for the user. Use the enum dl.MemberRole
+
+**return**
+   - dict that represent the user
+
+**rtype**
+   - dict
+
+**Example:**
+```python
+dl.projects.add_member(project_id='project_id', email='user@dataloop.ai', role=dl.MemberRole.DEVELOPER)
+```
+You can see a real example of this method's use in the code below:
+```python
+# Change the Project ID to your Project's ID, and the Email with the email of the user you want to add the Project
+dl.projects.add_member(project_id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242', email='email@gmail.com', role=dl.MemberRole.DEVELOPER)
+```
+**Note:** The roles available are OWNER, DEVELOPER, ANNOTATOR, and ANNOTATION_MANAGER.
+After executing this code, you will get a list of details about all users that are inside of that Project, including the one you just added, similar to what you can see below:
+```python
+[{'role': 'engineer',
+  'membershipType': 'member',
+  'membershipEntityId': '4c74c1b5-e9cb-4294-b9d5-cbfa13eda242',
+  'denyMembersManagement': None,
+  'guest': None,
+  'domain': 'gmail.com',
+  'createdAt': 1682933875445,
+  'updatedAt': 1682946019262,
+  'id': 'email@gmail.com',
+  'username': 'email@gmail.com',
+  'firstName': 'email',
+  'lastName': None,
+  'email': 'email@gmail.com',
+  'avatar': 'https://lh3.googleusercontent.com/a/AGNmyxZ0mChamopWqD60G9WfnQNctHJoSdGSleVP7j6H=s96-c',
+  'type': None,
+  'lastLogin': 1682946019262,
+  'lastLogout': None,
+  'interest': None,
+  'boarded': False,
+  'hash': 'dba6984594271e36dab60954f15e5e140bfec294dbfb9cd3f08695f12f758cee',
+  'timezone': None,
+  'cookieApproval': None,
+  'org': None}]
+```
+
+
