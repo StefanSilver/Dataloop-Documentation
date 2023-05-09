@@ -6,7 +6,7 @@ Below, you can see a Hyperlink list of all the methods for the .project object, 
 
 [dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | 
 
-
+-------------------------------------------
 ## Import dtlpy and Log In to Dataloop
 The first thing you must do whenever you use Dataloop's Python SDK package `dtlpy` is to import the package and log in to Dataloop. If you don't have an account, [please register one here](https://console.dataloop.ai/welcome) or [read our Log In Onboarding](https://developers.dataloop.ai/onboarding/02_login_and_project_and_dataset_creation/). Also, if you don't have the `dtlpy` package installed, [read our Installation Onboarding](https://developers.dataloop.ai/onboarding/01_python_sdk_installation/).
 
@@ -21,7 +21,7 @@ if dl.token_expired():
 #dl.login()
 ```
 
-
+-------------------------------------------
 ## <a name="get"></a> dl.projects.get() 
 
 The `dl.projects.get()` or `.get()` method in for the `projects` objects, is used to `GET` a Dataloop Project from the platform, in the current code you are working on.
@@ -74,7 +74,7 @@ If the code executes without errors, the output should look like this:
 ```python
 Project(created_at=1676027918381, creator='email@gmail.com', id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242', name='CreatureHunt', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])
 ```
-
+-------------------------------------------
 ## <a name="create"></a> dl.projects.create() 
 The `dl.projects.create()` allows you to create a new Project in the Dataloop Platform, in your current Organization.
 
@@ -112,7 +112,7 @@ If the code executes right, you should get the following output:
 Project(created_at=1683624625465, creator='email@gmail.com', id='cfe67f7b-62cf-437b-8e05-8f60a4ef7c3a', name='Test_Project', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])
 ```
 
-
+-------------------------------------------
 ## <a name="list"></a> dl.projects.list() 
 The `dl.projects.list()` is used to show all of the Project objects in the current Organization. If you have only one Organization, that means it will return a list of all of your Projects.
 
@@ -140,7 +140,7 @@ If you run the example code above, you will get an output that is similar to wha
  Project(created_at=1675184952443, creator='email@dataloop.ai', id='334469a6-a90c-4375-947b-a2810d7d08d8', name='Cool Project', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}]),
  Project(created_at=1676027918381, creator='email@gmail.com', id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242', name='CreatureHunt', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])]
 ```
-
+-------------------------------------------
 ## <a name="list_members"></a> dl.projects.list_members()
 The `dl.projects.list_members` method is used to show all of the members that have access to a give Project. 
 
@@ -182,7 +182,7 @@ project = dl.projects.get(project_name='CreatureHunt') # you need to first get
 dl.projects.list_members(project, role=dl.MemberRole.OWNER) 
 ```
 The code above will list all users with OWNER role in the Project you selected.
-
+-------------------------------------------
 ## <a name="add_member"></a> dl.projects.add_member()
 The `dl.projects.add_member()` method is used to add additional members to the Project you are currently working on, and designating those new members' role.
 
@@ -247,4 +247,6 @@ After executing this code, you will get a list of details about all users that a
   'org': None}]
 ```
 
-
+-------------------------------------------
+## <a name="checkout"></a> dl.projects.checkout()
+The `dl.projects.checkout()` method lets you change the current project you are working on with another one.
