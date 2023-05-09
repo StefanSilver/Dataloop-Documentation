@@ -4,7 +4,7 @@ In this section we will describe all of the methods (or functions) that can be a
 
 Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jump to the function/method you want to explore.
 
-[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | [dl.projects.checkout()](#checkout) | [dl.projects.open_in_web()](#open_in_web) 
+[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | [dl.projects.checkout()](#checkout) | [dl.projects.open_in_web()](#open_in_web) | [dl.projects.remove_member()](#remove_member)
 
 
 
@@ -294,7 +294,7 @@ This command doesn't have any visible Output, but your Project will be switched 
 
 -------------------------------------------
 ## <a name="open_in_web"></a> dl.projects.open_in_web()
-The `dl.projects.open_in_web()` method lets you open the Project you are currently working on (or a Project that you can select by ID) in the WebUI version of Dataloop.
+The `dl.projects.open_in_web()` method allows you to open the Project you are currently working on (or a Project that you can select by ID) in the WebUI version of Dataloop.
 
 You can see the full details of this methods, and use examples below.
 
@@ -325,4 +325,34 @@ dl.projects.open_in_web()
 This will open a new browser page showing the details of your Project in Dataloop's WebUI:
 ![image](https://github.com/StefanSilver/Dataloop-Documentation/assets/58508793/a48a4566-7615-4ee5-b533-afd37be25c39)
 
+
+-------------------------------------------
+## <a name="remove_member"></a> dl.projects.remove_member()
+The `dl.projects.open_in_web()` method allows you to remove a member from an existing Project which you own.
+
+You can find the details of this method, below.
+### remove_member()
+**Definition:** `remove_member(email: str, project_id: str)`
+
+***Remove a member from a Project. Must be Owner. Cannot Remove Owners***
+
+Prerequisites: You must be in the role of an Owner to delete a member from a Project.
+
+**param str email**
+- member email
+
+**param str project_id**
+- the Id of the Project
+
+**return**
+- dict that represents the user
+
+**rtype**
+- dict
+
+**Example:**
+```python
+dl.projects.remove_member(project_id='project_id', email='user@dataloop.ai')
+```
+After runing the example above (after changing the `project_id` with your Project's ID and the `email` variable with the email of the email of the user you want to remove, you will get a list of all of the remaining users of that Project, without the user you just removed, which means that you successfully removed a memeber from the Project.
 
