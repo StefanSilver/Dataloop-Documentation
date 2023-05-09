@@ -32,32 +32,32 @@ The complete description for this method can be seen below:
 
 **Definition:**  ```python get(project_name: str=None, project_id: str=None, checkout: bool=False, fetch: bool=None, log_error=True) -> entities.Project ```
 
-***Gets a Project object from Dataloop.***
+**Gets a Project object from Dataloop.**
 
 **Prerequisites:** You must be in the role of an Owner to get a Project object.
 
 You must check out to a project or provide at least one of the following params: `project_id`, `project_name`
 
 **param str project_name**
-    - (optional) search by name
+- (optional) search by name
 
 **param str project_id**
-    - (optional) search by id
+- (optional) search by id
 
 **param bool checkout**
-    - set the project as a default project object (cookies)
+- set the project as a default project object (cookies)
 
 **param bool fetch**
-    - (optional)fetch entity from platform (True), default taken from cookie
+- (optional)fetch entity from platform (True), default taken from cookie
 
 **param bool log_error**
-    - optional - show the logs errors
+- optional - show the logs errors
 
 **return**
-    - Project object
+- Project object
 
 **rtype**
-    - dtlpy.entities.project.Project
+- dtlpy.entities.project.Project
 
 **Example:**
 
@@ -88,16 +88,16 @@ You can see the complete description of the `.create()` method, along with its p
 **Prerequisites:** Any User role can create a Project.
 
 **param str project_name**
-    - The Name of the Project
+- The Name of the Project
 
 **param bool checkout**
-    - set the project as a default project object (cookies)
+- set the project as a default project object (cookies)
 
 **return**
-    - Project object
+- Project object
 
 **rtype**
-    - dtlpy.entities.project.Project
+- dtlpy.entities.project.Project
 
 **Example:**
 ```python project = dl.projects.create(project_name='project_name') ```
@@ -127,7 +127,7 @@ You can see the complete description of the `.create()` method, along with its p
 **Prerequisites:** You must be a superuser to list all users' projects.
 
 **return**
-    - List of Project objects
+- List of Project objects
 
 Example:
 ```python 
@@ -153,16 +153,16 @@ Get a list of the members inside of a Project.
 **Prerequisites:** You must be in the role of an Owner to list Project members.
 
 **param dtlpy.entities.project.Project project**
-   - Project object
+- Project object
 
 **param role**
-   - The required role for the user. The Roles can be ANNOTATION_MANAGER, ANNOTATOR, OWNER, DEVELOPER.
+- The required role for the user. The Roles can be ANNOTATION_MANAGER, ANNOTATOR, OWNER, DEVELOPER.
 
 **return**
-   - list of the Project members
+- list of the Project members
 
 **rtype**
-   - list
+- list
 
 **Example:**
 ```python 
@@ -196,19 +196,19 @@ Add a member to the project.
 **Prerequisites:** You must be in the role of an owner to add a member to a project.
 
 **param str email**
-   - member email
+- member email
 
 **param str project_id**
-   - The Id of the project
+- The Id of the project
 
 **param role**
-   - The required role for the user. Use the enum dl.MemberRole
+- The required role for the user. Use the enum dl.MemberRole
 
 **return**
-   - dict that represent the user
+- dict that represent the user
 
 **rtype**
-   - dict
+- dict
 
 **Example:**
 ```python
