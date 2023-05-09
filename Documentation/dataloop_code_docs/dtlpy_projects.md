@@ -385,7 +385,8 @@ project = dl.projects.update(project='project_entity')
 ```
 You can see an example of this code below:
 ```python 
-dl.projects.update(project = 'CreatureHunt')
+project = dl.projects.get(project_name = 'CreatureHunt')
+dl.projects.update(project)
 ```
 -------------------------------------------
 ## <a name="update_member"></a> dl.projects.update_member()
