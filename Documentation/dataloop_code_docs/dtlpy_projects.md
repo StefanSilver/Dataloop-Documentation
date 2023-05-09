@@ -50,6 +50,7 @@ dl.projects.get(project_name='CreatureHunt')
 # or, if you want to get the Project in a variable use
 project = dl.projects.get(project_name='CreatureHunt')
 ```
+**Note:** If you use the second command, where you get the Project inside a variable, you need to use `project.print()` or `print(project)` to see the details from below.
 If the code executes without errors, the output should look like this:
 ```python
 Project(created_at=1676027918381, creator='email@gmail.com', id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242', name='CreatureHunt', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])
