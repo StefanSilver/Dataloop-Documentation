@@ -4,7 +4,7 @@ In this section we will describe all of the methods (or functions) that can be a
 
 Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jumpt to the function/method you want to explore.
 
-[dl.projects.get()](#get)
+[dl.projects.get()](#get) | [dl.projects.create()](#create)
 
 ## <a name="get"></a> dl.projects.get() 
 
@@ -12,11 +12,11 @@ The `dl.projects.get()` or `.get()` method in for the `projects` objects, is use
 
 The complete description for this method can be seen below:
 
-### get
+### get()
 
 **Definition:**  ```python get(project_name: str=None, project_id: str=None, checkout: bool=False, fetch: bool=None, log_error=True) -> entities.Project ```
 
-Gets a Project object from Dataloop.
+***Gets a Project object from Dataloop.***
 
 **Prerequisites:** You must be in the role of an Owner to get a Project object.
 
@@ -59,3 +59,38 @@ If the code executes without errors, the output should look like this:
 Project(created_at=1676027918381, creator='email@gmail.com', id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242', name='CreatureHunt', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])
 ```
 
+## <a name="create"></a> dl.projects.create() 
+The `dl.projects.create()` allows you to create a new Project in the Dataloop Platform, in your current Organization.
+
+You can see the complete description of the `.create()` method, along with its parameters and examples, below:
+
+### create()
+**Definition:** ```python create(project_name: str, checkout: bool=False) -> entities.Project ```
+
+***Creates a new Project.***
+
+**Prerequisites:** Any User role can create a Project.
+
+**param str project_name**
+    - The Name of the Project
+
+**param bool checkout**
+    - set the project as a default project object (cookies)
+
+**return**
+    - Project object
+
+**rtype**
+    - dtlpy.entities.project.Project
+
+**Example:**
+```python project = dl.projects.create(project_name='project_name') ```
+You can see an example about how to use this method, to create a new Project, below.
+```python
+# can only run once, when you first create the new Project.
+dl.projects.create(project_name='Test_Project')
+```
+If the code executes right, you should get the following output:
+```python
+Project(created_at=1683624625465, creator='email@gmail.com', id='cfe67f7b-62cf-437b-8e05-8f60a4ef7c3a', name='Test_Project', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])
+```
