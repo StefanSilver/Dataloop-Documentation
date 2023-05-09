@@ -328,7 +328,7 @@ This will open a new browser page showing the details of your Project in Dataloo
 
 -------------------------------------------
 ## <a name="remove_member"></a> dl.projects.remove_member()
-The `dl.projects.open_in_web()` method allows you to remove a member from an existing Project which you own.
+The `dl.projects.remove_member()` method allows you to remove a member from an existing Project which you own.
 
 You can find the details of this method, below.
 ### remove_member()
