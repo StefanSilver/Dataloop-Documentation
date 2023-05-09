@@ -4,9 +4,7 @@ In this section we will describe all of the methods (or functions) that can be a
 
 Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jump to the function/method you want to explore.
 
-[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | [dl.projects.checkout()](#checkout) | [dl.projects.open_in_web()](#open_in_web) | [dl.projects.remove_member()](#remove_member)
-
-
+[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | [dl.projects.checkout()](#checkout) | [dl.projects.open_in_web()](#open_in_web) | [dl.projects.remove_member()](#remove_member) | [dl.projects.update()](#update) | [dl.projects.update_member()](#update_member)
 
 -------------------------------------------
 ## Import dtlpy and Log In to Dataloop
