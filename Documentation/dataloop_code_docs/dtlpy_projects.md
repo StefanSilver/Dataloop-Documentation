@@ -113,8 +113,6 @@ Project(created_at=1683624625465, creator='email@gmail.com', id='cfe67f7b-62cf-4
 
 
 ## <a name="list"></a> dl.projects.list() 
-
-## dl.projects.list()
 The `dl.projects.list()` is used to show all of the Project objects in the current Organization. If you have only one Organization, that means it will return a list of all of your Projects.
 
 You can see the complete description of the `.create()` method, along with its parameters and an example, below:
