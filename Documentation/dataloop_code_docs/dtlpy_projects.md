@@ -42,6 +42,16 @@ You must check out to a project or provide at least one of the following params:
 
 **Example:**
 
-```python project = dl.projects.get(project_id='project_id')```
+```python project = dl.projects.get(project_id='project_id') # change project_id with your Project's ID```
 
-You can see an example about how to use this, to get a project by name, below.
+You can see an example about how to use this, to get a Project by name, below:
+```python
+dl.projects.get(project_name='CreatureHunt')
+# or, if you want to get the Project in a variable use
+project = dl.projects.get(project_name='CreatureHunt')
+```
+If the code executes without errors, the output should look like this:
+```python
+Project(created_at=1676027918381, creator='email@gmail.com', id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242', name='CreatureHunt', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])
+```
+
