@@ -4,7 +4,7 @@ In this section we will describe all of the methods (or functions) that can be a
 
 Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jump to the function/method you want to explore.
 
-[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list)
+[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members)
 
 ## Import dtlpy and Log In to Dataloop
 The first thing you must do whenever you use Dataloop's Python SDK package `dtlpy` is to import the package and log in to Dataloop. If you don't have an account, [please register one here](https://console.dataloop.ai/welcome) or [read our Log In Onboarding](https://developers.dataloop.ai/onboarding/02_login_and_project_and_dataset_creation/). Also, if you don't have the `dtlpy` package installed, [read our Installation Onboarding](https://developers.dataloop.ai/onboarding/01_python_sdk_installation/).
@@ -139,3 +139,30 @@ If you run the example code above, you will get an output that is similar to wha
  Project(created_at=1675184952443, creator='email@dataloop.ai', id='334469a6-a90c-4375-947b-a2810d7d08d8', name='Cool Project', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}]),
  Project(created_at=1676027918381, creator='email@gmail.com', id='4c74c1b5-e9cb-4294-b9d5-cbfa13eda242', name='CreatureHunt', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])]
 ```
+
+## <a name="list_members"></a> dl.projects.list_members()
+The `dl.projects.list_members` method is used to show all of the members that have access to a give Project. 
+
+You can see all of the details about this method, below:
+
+**Definition:**```python list_members(project: entities.Project, role: entities.MemberRole=None)```
+
+Get a list of the members inside a Project .
+
+Prerequisites: You must be in the role of an owner to list project members.
+
+param dtlpy.entities.project.Project project
+Project object
+
+param role
+The required role for the user. Use the enum dl.MemberRole
+
+return
+list of the project members
+
+rtype
+list
+
+Example:
+
+users_jsons_list = dl.projects.list_members(project_id='project_id', role=dl.MemberRole.DEVELOPER)
