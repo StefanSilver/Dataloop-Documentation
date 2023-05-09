@@ -2,8 +2,11 @@
 
 In this section we will describe all of the methods (or functions) that can be applied to the Project Object in Dataloop.
 
+Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jumpt to the function/method you want to explore.
 
-## dl.projects.get()
+[dl.projects.get()](#get)
+
+## <a name="get"></a> dl.projects.get() 
 
 The `dl.projects.get()` or `.get()` method in for the `projects` objects, is used to `GET` a Dataloop Project from the platform, in the current code you are working on.
 
