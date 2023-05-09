@@ -147,22 +147,37 @@ You can see all of the details about this method, below:
 
 **Definition:**```python list_members(project: entities.Project, role: entities.MemberRole=None)```
 
-Get a list of the members inside a Project .
+Get a list of the members inside of a Project.
 
-Prerequisites: You must be in the role of an owner to list project members.
+**Prerequisites:** You must be in the role of an Owner to list Project members.
 
-param dtlpy.entities.project.Project project
-Project object
+**param dtlpy.entities.project.Project project**
+   - Project object
 
-param role
-The required role for the user. Use the enum dl.MemberRole
+**param role**
+   - The required role for the user. The Roles can be ANNOTATION_MANAGER, ANNOTATOR, OWNER, DEVELOPER.
 
-return
-list of the project members
+**return**
+   - list of the Project members
 
-rtype
-list
+**rtype**
+   - list
 
-Example:
-
-users_jsons_list = dl.projects.list_members(project_id='project_id', role=dl.MemberRole.DEVELOPER)
+**Example:**
+```python 
+project = dl.projects.get(project_name='CreatureHunt') # you need to first get 
+dl.projects.list_members(project) # project variable was declared above, where we used `get()` to get a project in a variable
+```
+The output from the Example code above, should be something similar to this:
+```python
+[User(created_at=1668006935461, name='bill', last_name=None, username='email@dataloop.ai', email='email@dataloop.ai', role='owner', type=None, org='18739a63-4393-43ea-a87e-9a284b14978f', id='email@dataloop.ai'),
+ User(created_at=1682936549405, name='model-mgmt-bot-1682936548922@dataloop.ai', last_name='Botman', username='bot.89b1cf81-6090-40a4-b2ad-48f7859ce5c4', email='bot.89b1cf81-6090-40a4-b2ad-48f7859ce5c4@bot.dataloop.ai', role='engineer', type='bot', org='18739a63-4393-43ea-a87e-9a284b14978f', id='bot.89b1cf81-6090-40a4-b2ad-48f7859ce5c4@bot.dataloop.ai'),
+ User(created_at=1591079098237, name='Irina ', last_name='Afanasyeva', username='email@dataloop.ai', email='email@dataloop.ai', role='owner', type=None, org='38ba8434-747a-49d4-b121-d73eec74e2f8', id='email@dataloop.ai'),
+ User(created_at=1673461599365, name='myfuncont', last_name=None, username='email@gmail.com', email='email@gmail.com', role='owner', type=None, org='18739a63-4393-43ea-a87e-9a284b14978f', id='email@gmail.com')]
+```
+You can also look for users with specific roles, which can be `.ANNOTATION_MANAGER`, `.ANNOTATOR`, `.OWNER`, `.DEVELOPER`. Use the code below, changing what type of user you are looking for:
+```python
+project = dl.projects.get(project_name='CreatureHunt') # you need to first get
+dl.projects.list_members(project, role=dl.MemberRole.OWNER) 
+```
+The code above will list all users with OWNER role in the Project you selected.
