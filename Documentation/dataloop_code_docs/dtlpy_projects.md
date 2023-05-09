@@ -2,7 +2,7 @@
 
 In this section we will describe all of the methods (or functions) that can be applied to the Project Object in Dataloop.
 
-Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jumpt to the function/method you want to explore.
+Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jump to the function/method you want to explore.
 
 [dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list)
 
