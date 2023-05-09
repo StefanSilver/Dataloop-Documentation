@@ -85,6 +85,7 @@ You can see the complete description of the `.create()` method, along with its p
 
 **Example:**
 ```python project = dl.projects.create(project_name='project_name') ```
+
 You can see an example about how to use this method, to create a new Project, below.
 ```python
 # can only run once, when you first create the new Project.
