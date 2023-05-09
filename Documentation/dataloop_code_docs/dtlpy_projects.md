@@ -6,6 +6,21 @@ Below, you can see a Hyperlink list of all the methods for the .project object, 
 
 [dl.projects.get()](#get) | [dl.projects.create()](#create)
 
+## Import dtlpy and Log In to Dataloop
+The first thing you must do whenever you use Dataloop's Python SDK package `dtlpy` is to import the package and log in to Dataloop. If you don't have an account, [please register one here](https://console.dataloop.ai/welcome) or [read our Log In Onboarding](https://developers.dataloop.ai/onboarding/02_login_and_project_and_dataset_creation/). Also, if you don't have the `dtlpy` package installed, [read our Installation Onboarding](https://developers.dataloop.ai/onboarding/01_python_sdk_installation/).
+
+In the code below, we import `dtlpy` as `dl` for easier use, and log in to Dataloop.
+```python
+import dtlpy as dl
+
+# Logging in to Dataloop (checks if token expired ~24h expiration time for token - otherwise it doesn't run) - runs only once
+if dl.token_expired():
+   dl.login()
+# you can also use the simple login() below - but you will have to log in every time you execute the code (not recommended)
+#dl.login()
+```
+
+
 ## <a name="get"></a> dl.projects.get() 
 
 The `dl.projects.get()` or `.get()` method in for the `projects` objects, is used to `GET` a Dataloop Project from the platform, in the current code you are working on.
