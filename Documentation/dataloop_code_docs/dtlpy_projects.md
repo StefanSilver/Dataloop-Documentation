@@ -4,7 +4,9 @@ In this section we will describe all of the methods (or functions) that can be a
 
 Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jump to the function/method you want to explore.
 
-[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | [dl.projects.checkout()](#checkout)
+[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | [dl.projects.checkout()](#checkout) | [dl.projects.open_in_web()](#open_in_web) 
+
+
 
 -------------------------------------------
 ## Import dtlpy and Log In to Dataloop
@@ -289,4 +291,38 @@ Or you can use the Project's name instead of the ID:
 dl.projects.checkout(project_name'CreatureHunt')
 ```
 This command doesn't have any visible Output, but your Project will be switched to the Project you added to `project_id` or `project_name`.
+
+-------------------------------------------
+## <a name="open_in_web"></a> dl.projects.open_in_web()
+The `dl.projects.open_in_web()` method lets you open the Project you are currently working on (or a Project that you can select by ID) in the WebUI version of Dataloop.
+
+You can see the full details of this methods, and use examples below.
+
+### open_in_web()
+**Definition:** `open_in_web(project_name: str=None, project_id: str=None, project: entities.Project=None)`
+
+***Open the project in our web platform.***
+
+Prerequisites: All users can open a Project in the WebUI of Dataloop.
+
+**param str project_name**
+- The Name of the Project
+
+**param str project_id**
+- The Id of the Project
+
+**param dtlpy.entities.project.Project project**
+- Project object
+
+**Example:**
+```python
+dl.projects.open_in_web(project_id='project_id') # or project_name='project_name'
+```
+Select the `project_id` or the `project_name` in the command above, if you want to open a specific Project. If you use it without any parameters, the method will open the Project you currently have selected in the WebUI:
+```python
+dl.projects.open_in_web()
+```
+This will open a new browser page showing the details of your Project in Dataloop's WebUI:
+![image](https://github.com/StefanSilver/Dataloop-Documentation/assets/58508793/a48a4566-7615-4ee5-b533-afd37be25c39)
+
 
