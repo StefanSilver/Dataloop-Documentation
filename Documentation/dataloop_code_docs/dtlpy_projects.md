@@ -383,10 +383,19 @@ You can find the details of this method, below.
 ```python
 project = dl.projects.update(project='project_entity')
 ```
-You can see an example of this code below:
+**Important!*** To `.update()` a Project, you first need to change something in it. Otherwise you will get an error message. To test this method, first create a new Project called `Test_Project` using `dl.projects.create(project_name='Test_Project')`. Then, you can execute the code below, which will rename the Project to `after_change` and then `.update()` it successfully:
 ```python 
-project = dl.projects.get(project_name = 'CreatureHunt')
-dl.projects.update(project)
+project = dl.projects.get(project_name= 'Test_Project')
+
+print("Before Change Name = " + project.name)
+project.name = 'after_change'
+print("After Change Name = " + project.name)
+
+dl.projects.update(project = 'CreatureHunt')
+```
+If everything runs well, you should get this Output, which clearly shows that the Project's name was changed successfully:
+```python
+Project(created_at=1683624625465, creator='myfuncont@gmail.com', id='cfe67f7b-62cf-437b-8e05-8f60a4ef7c3a', name='after_change', feature_constraints=[{'name': 'downloadJsons', 'quota': 1, 'title': 'Download Annotation as Json'}, {'name': 'createGPUService', 'quota': 1, 'title': 'Create GPU service'}, {'name': 'createIntegration', 'quota': 1, 'title': 'Create Integrations'}, {'name': 'createDriver', 'quota': 1, 'title': 'Create Driver'}])
 ```
 -------------------------------------------
 ## <a name="update_member"></a> dl.projects.update_member()
