@@ -4,7 +4,7 @@ In this section we will describe all of the methods (or functions) that can be a
 
 Below, you can see a Hyperlink list of all the methods for the .project object, which you can click to jump to the function/method you want to explore.
 
-[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | [dl.projects.checkout()](#checkout) | [dl.projects.open_in_web()](#open_in_web) | [dl.projects.remove_member()](#remove_member) | [dl.projects.update()](#update) | [dl.projects.update_member()](#update_member)
+[dl.projects.get()](#get) | [dl.projects.create()](#create) | [dl.projects.list() ](#list) | [dl.projects.list_members()](#list_members) | [dl.projects.add_member()](#add_member) | [dl.projects.checkout()](#checkout) | [dl.projects.open_in_web()](#open_in_web) | [dl.projects.remove_member()](#remove_member) | [dl.projects.update()](#update) | [dl.projects.update_member()](#update_member) | [dl.projects.delete()](#delete)
 
 -------------------------------------------
 ## Import dtlpy and Log In to Dataloop
@@ -449,6 +449,55 @@ The output of this code will  be a dict list of all members that are part of the
   'membershipEntityId': '4c74c1b5-e9cb-4294-b9d5-cbfa13eda242',
   'denyMembersManagement': None}]
 ```
+-------------------------------------------
+## <a name="delete"></a> dl.projects.delete()
+The `dl.projects.delete()` method allows you to delete a Project, if you are its Owner. This will delete your Projects and its contents forever! So proceed using this command with care.
 
+You can find all of the details about this method below.
+## delete()
 
+**Definition:** `delete(project_name: str=None, project_id: str=None, sure: bool=False, really: bool=False) -> bool`
 
+***Warning! This method deletes a Project forever!***
+
+**Prerequisites:** You must have the Owner role to delete a Project.
+
+**param str project_name**
+- (optional) search by name
+
+**param str project_id**
+- (optional) search by id
+
+**param bool sure**
+- Are you sure you want to delete?
+
+**param bool really**
+- Really really sure?
+
+**return**
+- True if success, error if not
+
+**rtype**
+- bool
+
+**Example:**
+```python
+dl.projects.delete(project_id='project_id', sure=True, really=True) # Are you surely sure? Lol :D.
+```
+**Note:** You can also use `project_name=''` instead of the `project_id=''`, if you want to delete using a Project's name.
+A working code would look like this:
+```python
+dl.projects.delete(project_id="cfe67f7b-62cf-437b-8e05-8f60a4ef7c3a", sure=True, really=True)
+```
+And the output, after executing that code would look like this:
+```python
+True
+```
+Now, we can double-check if this Project has been deleted, by trying to get it in a variable, using the same id:
+```python
+proj = dl.projects.get(project_id='cfe67f7b-62cf-437b-8e05-8f60a4ef7c3a')
+```
+If the Project was deleted, you should get a 404 error, short-version lookin like this:
+```python
+NotFound: ('404', 'Project not found')
+```
