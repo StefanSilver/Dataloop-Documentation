@@ -497,7 +497,7 @@ Now, we can double-check if this Project has been deleted, by trying to get it i
 ```python
 proj = dl.projects.get(project_id='cfe67f7b-62cf-437b-8e05-8f60a4ef7c3a')
 ```
-If the Project was deleted, you should get a 404 error, short-version lookin like this:
+If the Project was deleted, you should get a 404 error, short-version looking like this:
 ```python
 NotFound: ('404', 'Project not found')
 ```
