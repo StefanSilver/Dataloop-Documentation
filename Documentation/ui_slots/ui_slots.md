@@ -101,30 +101,32 @@ If the Service Function was executed successfully, you will see a pop-up letting
 
 ## Places where you can add UI Slots
 There are 4 spots in the platform interface where you can call your function manually.
-For Datasets - Panel in Dataset Browse
-For Items - Annotation Studio
-For Tasks - Task Browser
-For Annotations - Annotation Studio
+- For Datasets - Panel in Dataset Browser
+- For Items - Annotation Studio
+- For Tasks - Task Browser
+- For Annotations - Annotation Studio
 
-Dataset
+Below, you will be able to find a visual description of how to do that for each of them.
+
+### Dataset
 ![image](https://user-images.githubusercontent.com/58508793/236268346-c9d98696-d492-4e6c-89e4-520ba05001f1.png)
 ![image](https://user-images.githubusercontent.com/58508793/236268385-75302228-501a-46be-a0e9-afd51cabe658.png)
 
 
 
-Item
+### Item
 
 ![image](https://user-images.githubusercontent.com/58508793/236268444-bf7e22c5-3591-4004-aec1-10ee774970bf.png)
 ![image](https://user-images.githubusercontent.com/58508793/236268484-817dfb23-9422-4c29-a380-e02f1f578301.png)
 
 
-Task
+### Task
 ![image](https://user-images.githubusercontent.com/58508793/236268543-23eb8c2b-2997-498a-9ce2-d90e5fee1add.png)
 ![image](https://user-images.githubusercontent.com/58508793/236268585-43258fb6-6751-407f-828f-80cb222f5f00.png)
 
 
 
-Annotation
+### Annotation
 ![image](https://user-images.githubusercontent.com/58508793/236268716-7075fc79-d99f-4da6-b77e-ad51be4d3d52.png)
 ![image](https://user-images.githubusercontent.com/58508793/236268772-f35d6217-3a9a-496f-939a-e3d15b1cbeff.png)
 
