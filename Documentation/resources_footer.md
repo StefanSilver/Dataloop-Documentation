@@ -1,11 +1,15 @@
 # Dataloop Resources
 
-Dataloop has a lot of resources from which you can learn about the services we offer. However, it may be difficult to see the whole picture when it comes to where all the resources are, or when you're trying to find something specific. That's why we took care of organising all of them here. 
+Dataloop has a lot of resources that can help you learn about the services we offer. However, it may be challenging to have a comprehensive understanding of the location of all resources or to locate something particular that you need. That's why we took care of organising all of them. 
 
-Below, you will find links to a **mindmap** showing, in a visual way, all of the resources available - each element is clickable and will redirect you to that resource. Also, you will find other Documentation pages and their descriptions, so you know where to look for what you want to learn.
-
-## Resources List
+Below, you will find links to a **mindmap** showing all of the resources available - each element is clickable and will redirect you to that resource. Below you will also find other Documentation pages and their descriptions, so you know where to look, and what you'll find.
 
 1. [Dataloop's Developer Mindmap](https://gitmind.com/app/docs/m7u63dss) - a visual representation of all the resources available for developers.
 2. [Dataloop's Developer Documentation on Redocly](https://developers.dataloop.ai/tutorials/tutorials/) - here you will find a [Beginner Onboarding](https://developers.dataloop.ai/onboarding/onboarding/) which will walk you throught the basics of using Dataloop's platform from the Python SDK, and also an [Advanced Onboarding Exercise](https://developers.dataloop.ai/onboarding/11_onboarding_exercise/) which will show you how to use the platform on a more complicated usecase; [you can also find them on GitHub](https://github.com/dataloop-ai/dtlpy-documentation), if that's your thing.
+3. [Dataloop's Main GitHub Repository](https://github.com/dataloop-ai) - this repository contains the main dtlpy package, along with its documentation and other resources; this is meant to be a "clean" space containing the critical elements of Dataloop.
+4. [Dataloop's Developer GitHub Repository](https://github.com/dataloop-ai-apps) - this repository contains resources, exercises, examples, documentations, etc. - its purpose is to be a Developer Community, which offers resources and guides from which developers can learn about the platform, ask questions and find useful code and guide that will solve their problems. 
+5. [Dataloop's API Documentation](https://github.com/dataloop-ai-apps/dataloop-api-documentation) - this documentation is a beginner's guide to how to use Dataloop's Rest APIAPI ([click here to open the Swagger UI API page](https://gate.dataloop.ai/api/v1/docs/#/)); it will walk you through what API's are in general, what Dataloop's API is, how it helps you, why you should use it and teaches you **how** to use it. You can also [find a "Glossary" of all API commands here](https://github.com/dataloop-ai-apps/dataloop-api-documentation/blob/main/02_swagger_ui_api_guide.md).
+6. [Dataloop's WebUI Version](https://console.dataloop.ai/welcome) - remember that you can always use (and should use) the WebUI version of Dataloop; some things are easier to do on the WebUI version, while others are easier to do in the PythonSDK version - so be sure to use both.
+
+Finally, if you have any troubles in your journey to learn and use Dataloop, you can always contact us for help by clicking the small e-mail button located at the bottom right of the [main Dataloop web page](https://dataloop.ai/), or even [book a demo so we can walk you through how to use Dataloop](https://dataloop.ai/#talkToAnExpert).
 
