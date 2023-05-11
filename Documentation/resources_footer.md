@@ -1,4 +1,4 @@
-# Dataloop Resources
+## Final Words
 
 Dataloop has a lot of resources that can help you learn about the services we offer. However, it may be challenging to have a comprehensive understanding of the location of all resources or to locate something particular that you need. That's why we took care of organising all of them. 
 
