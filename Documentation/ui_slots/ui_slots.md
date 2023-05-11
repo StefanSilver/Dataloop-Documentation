@@ -106,7 +106,7 @@ There are 4 spots in the platform interface where you can call your function man
 - For Tasks - Task Browser
 - For Annotations - Annotation Studio
 
-Below, you will be able to find a visual description of how to do that for each of them.
+Below, you will be able to find a visual description of how to do that for each of them. The process if very similar to what we did above, so no further descriptions are needed.
 
 ### Dataset
 ![image](https://user-images.githubusercontent.com/58508793/236268346-c9d98696-d492-4e6c-89e4-520ba05001f1.png)
