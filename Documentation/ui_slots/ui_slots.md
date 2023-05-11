@@ -129,7 +129,7 @@ Annotation
 ![image](https://user-images.githubusercontent.com/58508793/236268772-f35d6217-3a9a-496f-939a-e3d15b1cbeff.png)
 
 
-# Dataloop Resources
+## Final Words
 
 Dataloop has a lot of resources that can help you learn about the services we offer. However, it may be challenging to have a comprehensive understanding of the location of all resources or to locate something particular that you need. That's why we took care of organising all of them. 
 
