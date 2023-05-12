@@ -221,3 +221,55 @@ The printed details should look similar to this:
 ```python
 Dataset(id='645e3b5597a22fe0971aa231', url='https://gate.dataloop.ai/api/v1/datasets/645e3b5597a22fe0971aa231', name='Test_Dataset_Clone', creator='email@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-05-12T13:12:53.211Z')
 ```
+----------------------------------------------
+## <a name="delete"></a> dl.datasets.delete()
+The `dl.datasets.delete()` method allows you to permanently delete a Dataset from the Dataloop Platform. Make sure that you really want to remove the Dataset and all of its contents, as **the removal is permanent**.
+
+All of of the details about this method can be seen below.
+
+### delete()
+
+**Definition:** `delete(dataset_name: str=None, dataset_id: str=None, sure: bool=False, really: bool=False)`
+
+***Deletes a Dataset forever!***
+
+**Prerequisites:** You must be an Owner to use this method.
+
+
+**param str dataset_name**
+- (optional) Search by name
+
+**param str dataset_id**
+- (optional) Search by ID
+
+**param bool sure**
+- Are you sure you want to delete?
+
+**param bool really**
+- Really really sure that you are sure?
+
+**return**
+- True is success; are you sure you want success?
+
+**rtype**
+- bool
+
+**Example:**
+```python
+proj.datasets.delete(dataset_id='dataset_id', sure=True, really=True) # Are you sure you are sure?
+# or you can use with both name and id
+# dl.datasets.delete(dataset_name='Test_Dataset_Clone', sure=True, really=True) 
+```
+For the purpose of showing how the `delete()` method works, we will delete the clone Dataset we created [above](#clone), called `Test_Dataset_Clone`:
+```python
+dl.datasets.delete(dataset_name='Test_Dataset_Clone', sure=True, really=True)
+```
+To this, you should get a simple output:
+```python
+True
+```
+**Note:** If the Dataset you want to delete is not in the current project you are working on, you **need** to use the `dl.datasets.delete(dataset_name='Test_Dataset_Clone', sure=True, really=True)`, as this option will look thorugh all of the Datasets you have in the current active Organization, on all Projects. 
+***Important!***   We highly recommend that you delete a Dataset using its `ID`, as each ID is unique. This will always make sure that you delete the right ID. You can find the ID of all Datasets in the [WebUI version of Dataloop](https://dataloop.ai/) or by using `dl.datasets.list()` - in the current active Project. Just to make sure you know, an example of the command to delete by ID can be seen below:
+```python
+dl.datasets.delete(dataset_id='645e3b5597a22fe0971aa231', sure=True, really=True)
+```
