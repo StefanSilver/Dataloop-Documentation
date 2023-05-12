@@ -151,3 +151,73 @@ The output should look like this:
 ```python
 Dataset(id='645cee1b05c36859784c0b37', url='https://gate.dataloop.ai/api/v1/datasets/645cee1b05c36859784c0b37', name='Test_Dataset', creator='myfuncont@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-05-11T13:31:07.545Z')
 ```
+----------------------------------------------
+## <a name="clone"></a> dl.datasets.clone()
+The `dl.datasets.clone()` method allows you to clone a Dataset, so you can keep your original untouched and work on the clone without fear of breaking anything. This can also be used for Versioning, which allows you to make changes and create checkpoints for your Dataset.
+
+**Important!** The new Dataset will have the same Recipe and Ontology as the Original. [Read more about Recipes and Ontology](https://dataloop.ai/docs/taxonomy-overview), since they are critical building blocks of Datasets.
+
+You can find all the details about this method below.
+
+### clone
+
+**Definition:** `clone(dataset_id: str, clone_name: str, filters: entities.Filters=None, with_items_annotations: bool=True, with_metadata: bool=True, with_task_annotations_status: bool=True)`
+
+***Clones an existing Dataset.*** [Read more about cloning datatsets here](https://dataloop.ai/docs/clone-merge-dataset). 
+
+**Prerequisites:** You must have the role of  Owner or Developer (engineer).
+
+**param str dataset_id**
+id of the dataset you wish to clone
+
+**param str clone_name**
+new dataset name
+
+**param dtlpy.entities.filters.Filters filters**
+Filters entity or a query dict
+
+**param bool with_items_annotations**
+true to clone with items annotations
+
+**param bool with_metadata**
+true to clone with metadata
+
+**param bool with_task_annotations_status**
+true to clone with task annotations' status
+
+**return**
+dataset object
+
+**rtype**
+dtlpy.entities.dataset.Dataset
+
+**Example:**
+```python
+dataset_clone = proj.datasets.clone(dataset_id='dataset_id',
+                      clone_name='dataset_clone_name',
+                      with_metadata=True,
+                      with_items_annotations=False,
+                      with_task_annotations_status=False)
+```
+If we run that code on the existing Dataset we created `Test_Dataset`(you cane find the ID by running `d_set`), it will look like this:
+```python
+
+dataset_clone = proj.datasets.clone(dataset_id='645cee1b05c36859784c0b37',
+                      clone_name='Test_Dataset_Clone',
+                      with_metadata=True,
+                      with_items_annotations=False,#True if you want
+                      with_task_annotations_status=False)#True if you want
+```
+You should get a progress bar as an output. Wait untill it is completed for the clone to be created successfully:
+```python
+Command Progress: 100%|█████████████████████████████████████████████████████████████| 100/100 [00:00<00:00, 288.04it/s]
+```
+After that, you can check if the Clone was created, by printing the `dataset_clone` variable which should contain the cloned Dataset Object:
+```python
+print(dataset_clone) #print the cloned Dataset's details
+```
+The printed details should look similar to this:
+
+```python
+Dataset(id='645e3b5597a22fe0971aa231', url='https://gate.dataloop.ai/api/v1/datasets/645e3b5597a22fe0971aa231', name='Test_Dataset_Clone', creator='email@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-05-12T13:12:53.211Z')
+```
