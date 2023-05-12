@@ -273,3 +273,60 @@ True
 ```python
 dl.datasets.delete(dataset_id='645e3b5597a22fe0971aa231', sure=True, really=True)
 ```
+---------------------------------------------
+## <a name="directory_tree"></a> dl.datasets.directory_tree()
+The `dl.datasets.directory_tree()` method allows you find out what your Dataset's location is in Dataloop's platform, and other details regarding your Dataset.
+
+You can find all the details about this method below.
+
+
+### directory_tree()
+**Definition:** `directory_tree(dataset: entities.Dataset=None, dataset_name: str=None, dataset_id: str=None)`
+
+***Gets a Dataset's directory tree.***
+
+**Prerequisites:** You must be an Owner or Developer(engineer) to use this method. 
+
+**You must provide at least ONE of the following params: dataset, dataset_name, dataset_id.**
+
+**param dtlpy.entities.dataset.Dataset dataset**
+- Dataset Object
+
+**param str dataset_name**
+- The Name of the Dataset
+
+**param str dataset_id**
+- The Id of the Dataset
+
+**return**
+- DirectoryTree
+
+**Example:**
+```python
+directory_tree = dl.datasets.directory_tree(dataset='dataset_entity')
+```
+Let's run that example of the `Test_Dataset` we created:
+```python
+directory_tree = proj.datasets.directory_tree(dataset_name='Test_Dataset')
+directory_tree.tree
+
+```
+The output of the `directory_tree.tree` should look similar to this:
+```python
+{'value': {'id': '645e54554da725a6ed4553b9',
+  'datasetId': '645e54554da72568414553b7',
+  'url': 'https://gate.dataloop.ai/api/v1/items/645e54554da725a6ed4553b9',
+  'dataset': 'https://gate.dataloop.ai/api/v1/datasets/645e54554da72568414553b7',
+  'createdAt': '2023-05-12T14:59:33.000Z',
+  'dir': '/',
+  'filename': '/',
+  'type': 'dir',
+  'hidden': False,
+  'metadata': {},
+  'name': '',
+  'creator': 'email@gmail.com',
+  'items': 'https://gate.dataloop.ai/api/v1/datasets/645e54554da72568414553b7/items/645e54554da725a6ed4553b9/items',
+  'export': {'zip': 'https://gate.dataloop.ai/api/v1/datasets/645e54554da72568414553b7/annotations/zip?directory=/',
+   'json': 'https://gate.dataloop.ai/api/v1/datasets/645e54554da72568414553b7/annotations/json?directory=/'}},
+ 'children': []}
+```
