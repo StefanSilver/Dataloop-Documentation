@@ -330,3 +330,106 @@ The output of the `directory_tree.tree` should look similar to this:
    'json': 'https://gate.dataloop.ai/api/v1/datasets/645e54554da72568414553b7/annotations/json?directory=/'}},
  'children': []}
 ```
+---------------------------
+## <a name="download_annotations"></a> dl.datasets.download_annotations()
+The `dl.datasets.download_annotations()` method allows you to download the Annotations and Items from a Dataset, depending on the Filter you are using. You can download as a mask, instance or an image mask of the Item.
+
+You can see all of the details about this method below.
+
+### download_annotations()
+
+Definition: ` download_annotations(dataset: entities.Dataset, local_path: str=None, filters: entities.Filters=None, annotation_options: entities.ViewAnnotationOptions=None, annotation_filters: entities.Filters=None, overwrite: bool=False, thickness: int=1, with_text: bool=False, remote_path: str=None, include_annotations_in_output: bool=True, export_png_files: bool=False, filter_output_annotations: bool=False, alpha: float=None, export_version=entities.ExportVersion.V1) -> str`
+
+***Download a Dataset's Annotations and/or Items by filters. You may filter the Dataset both for Items and for Annotations, and download them. Optionally you can download Annotations as: mask, instance, image mask of the Item.***
+
+
+**Prerequisites:** You must be in the role of Owner or Developer(engineer).
+
+**param dtlpy.entities.dataset.Dataset dataset**
+- Dataset object
+
+**param str local_path**
+- Local folder save location (and/or saved filename)  
+
+**param dtlpy.entities.filters.Filters filters**
+- Filters entity or a dictionary containing filters parameters
+
+**param list annotation_options**
+- Type of download annotations: list(dl.ViewAnnotationOptions)
+
+**param dtlpy.entities.filters.Filters annotation_filters**
+- Filters entity to filter annotations for download
+
+**param bool overwrite**
+- (optional) By default = False so it doesn't overwrite the existing files
+
+**param int thickness**
+- (optional) - line thickness, if -1 annotation will be filled, default =1
+
+**param bool with_text**
+optional - add text to annotations, default = False
+
+**param str remote_path**
+DEPRECATED and ignored
+
+**param bool include_annotations_in_output**
+default - False , if export should contain annotations
+
+**param bool export_png_files**
+default - if True, semantic annotations should be exported as png files
+
+**param bool filter_output_annotations**
+default - False, given an export by filter - determine if to filter out annotations
+
+**param float alpha**
+opacity value [0 1], default 1
+
+**param str export_version**
+exported items will have original extension in filename, V1 - no original extension in filenames
+
+**return**
+local_path of the directory where all the downloaded Item were placed
+
+**rtype**
+str
+
+Example:
+```python
+            #dl. or proj. (the project object/variable's name)
+file_path = dl.datasets.download_annotations(dataset='dataset_entity',
+                                     local_path='C:\\Users\\User\\Desktop\\dataloop_code_docs',
+                                     #(optional)annotation_options=dl.ViewAnnotationOptions,
+                                     overwrite=False,
+                                     thickness=1,
+                                     with_text=False,
+                                     alpha=1
+                                     )
+```
+In our case, a working example would be:
+```python
+# the dataset is d_set, or the variable in which you got the dataset object
+#Optionally, you can do
+#d_set = dl.datasets.get(dataset_name='Test_Dataset') #or your dataset's name/id
+file_path = dl.datasets.download_annotations(dataset=d_set,
+                                     local_path='local_path',
+                                     #(optional)annotation_options=dl.ViewAnnotationOptions,
+                                     overwrite=False,
+                                     thickness=1,
+                                     with_text=False,
+                                     alpha=1
+                                     )
+```
+And you'll get as an output a command progress bar and a download progress bar (wait for them to finish):
+```python
+Command Progress: 100%|██████████████████████████████████████████████████████████████| 100/100 [00:01<00:00, 53.51it/s]
+Download Items: 100%|████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 10.14it/s]
+```
+You can then print the `file_path` to see where your files were placed:
+```python
+print(file_path)
+```
+Which will show you where the files were saved:
+```python
+C:\Users\User\Desktop\dataloop_code_docs
+```
+**Note:** If you have no Items and no Annotations, a folder will be created where you will find an empty folder named `json`.
