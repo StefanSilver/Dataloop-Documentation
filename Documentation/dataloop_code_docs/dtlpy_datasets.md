@@ -1,6 +1,6 @@
 # dtlpy.datasets
-In this guide, we will describe how to use each method in the `dtlpy.datasets` and show how to use and what output you should get, so you can know everything about each function by the end of this section.
-
+In this guide, we will describe how to use each method in the `dtlpy.datasets` and show how to use and what output you should get, so you can know everything about each function by the end of this section. You can click any of the methods below to jump to that method's description.
+[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) |[]()
 ## Import dtlpy and log in to Dataloop
 Before you do any operations on any Dataloop entity, you need to log in and import the `dtlpy` package.
 
@@ -137,7 +137,6 @@ dataset = proj.datasets.get(dataset_id='dataset_id')
 #or
 dataset= proj.dataset.get(dataset_name='dataset_name')
 ```
-
 
 We will create a variable called `d_set` to avoid any confusion, and we will retrieve the Dataset we created, called `Test_Dataset` in it, using:
 ```python
