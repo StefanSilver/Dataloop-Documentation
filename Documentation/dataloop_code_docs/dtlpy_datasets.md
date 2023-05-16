@@ -760,3 +760,57 @@ The output of this method is a Dataset Object. That output looks like this:
 ```python
 Dataset(id='645e54554da72568414553b7', url='https://gate.dataloop.ai/api/v1/datasets/645e54554da72568414553b7', name='Test_Dataset', creator='email@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-05-12T14:59:33.939Z')
 ```
+------------------------------------------------
+# <a name="upload_annotations"></a> dl.datasets.upload_annotations()
+
+The `dl.datasets.upload_annotations()` method allows you to upload Annotations to the Dataloop Platform. Above, we showed [how to download Annotations](#download_annotations). Once downloaded, you can also upload them back to the Dataloop platform, even to another Dataset.
+
+You can see all the details about this method, below.
+
+## upload_annotations()
+**Definition:** `upload_annotations(dataset, local_path, filters: entities.Filters=None, clean=False, remote_root_path='/', export_version=entities.ExportVersion.V1)`
+
+**Upload Annotations to a Dataset in the Dataloop platform.**
+
+*Example for remote_root_path - if the Item filepath is a/b/item and remote_root_path is /a the start folder will be b instead of a.*
+
+**Prerequisites:** *You must have a Dataset with Items that are related to the Annotations. The relationship between the dataset and annotations is shown in the name. You must be in the role of an Owner or Developer (engineer).*
+
+**param dtlpy.entities.dataset.Dataset dataset**
+- Dataset to upload to
+
+**param str local_path**
+- str - local folder where the Annotations files are
+
+**param dtlpy.entities.filters.Filters filters**
+- Filters entity or a dictionary containing filters parameters
+
+**param bool clean**
+- True to remove the old annotations
+
+**param str remote_root_path**
+- the remote root path to match remote and local items
+
+**param str export_version**
+- exported items will have original extension in filename, V1 - no original extension in filenames
+
+**Example:**
+```python
+project.datasets.upload_annotations(dataset='dataset_entity',
+                                     local_path='local_path',
+                                     clean=False,
+                                     export_version=dl.ExportVersion.V1
+                                     )
+```
+The code, customised to our dataset `d_set` looks like this:
+```python
+dl.datasets.upload_annotations(d_set,
+                                local_path='local_path',
+                                clean=False,
+                                export_version=dl.ExportVersion.V1
+                                )
+```
+The output you get after running this method is 2 progress bars - Upload Annotations and Iterate Entity; once they are finished, the annotations should be uploaded to the Dataset. If no Annotation was uploaded (if the path you provided has no Annotations in it), you will get a *warning* looking like this:
+```python
+[2023-05-16 22:55:48][WAR][dtlpy:v1.76.17][repositories.datasets:926] No annotations uploaded to dataset!
+```
