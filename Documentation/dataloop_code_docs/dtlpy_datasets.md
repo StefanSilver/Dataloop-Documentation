@@ -4,7 +4,7 @@ In this guide, we will describe how to use each method in the `dtlpy.datasets` a
 
 --------------------------
 
-[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) |[]()
+[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) |[dl.datasets.list()](#list)
 
 ---------------------------
 
@@ -439,3 +439,78 @@ Which will show you where the files were saved:
 C:\Users\User\Desktop\dataloop_code_docs
 ```
 **Note:** If you have no Items and no Annotations, a folder will be created where you will find an empty folder named `json`.
+
+------------------------------------------------
+# <a name="list"></a> dl.datasets.list()
+
+The `dl.datasets.list()` method allows you to list all of the Datasets in your active Project **or** to list all of the Datasets you have, **if you have no active Project selected**. If you use the `.list()` method on a Project object, or if you used the `get()` method to get a Project in your code (before using the `dl.datasets.list()`), it will list all of the Datasets inside of that Project. However, if you use `dl.datasets.list()`, before using `get()` to select a Project (you need to have **never** used the `get()` Project method in the current coding session), it will instead list all of the Datasets that you have in all of your Projects. This method also allows you to list the details about a particular Dataset (by name) or list all Datasets created by a specific creator.
+
+We will cover all uses, after showing the details about this function, below.
+
+## list()
+
+**Definition:** `list(name=None, creator=None) -> miscellaneous.List[entities.Dataset]`
+
+***Lists all Datasets in the active Project.***
+
+**Prerequisites:** You must be an Owner or Developer(engineer) to use this method.
+
+**param str name**
+- list by name
+
+**param str creator**
+- list by creator
+
+**return**
+- List of Datasets
+
+**rtype**
+- list
+-
+**Examples**
+
+If you want to list all of the Datasets that you have access to, you can use the basic form of this function, **before** using `get()` to select an active Project. This may give you some (harmless) errors, but will also list all of the Datasets you have access to:
+```python
+dl.datasets.list()
+```
+The output should look like this:
+```python
+[2023-05-16 13:28:59][WAR][dtlpy:v1.76.17][entities.dataset:145] Dataset has been fetched from a project that is not in it projects list
+[2023-05-16 13:28:59][WAR][dtlpy:v1.76.17][entities.dataset:145] Dataset has been fetched from a project that is not in it projects list
+[2023-05-16 13:28:59][WAR][dtlpy:v1.76.17][entities.dataset:145] Dataset has been fetched from a project that is not in it projects list
+[2023-05-16 13:28:59][WAR][dtlpy:v1.76.17][entities.dataset:145] Dataset has been fetched from a project that is not in it projects list
+[Dataset(id='63ceb9afb9337b02b55bab50', url='https://gate.dataloop.ai/api/v1/datasets/63ceb9afb9337b02b55bab50', name='Binaries', creator='email@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-01-23T16:45:35.770Z'),
+ Dataset(id='63da62d973b62f22086f1d8f', url='https://gate.dataloop.ai/api/v1/datasets/63da62d973b62f22086f1d8f', name='My-First-Dataset', creator='email@gmail.com', items_count=1, expiration_options=None, index_driver='v1', created_at='2023-02-01T13:02:17.250Z'),
+ Dataset(id='63da63cab9421abb1ddd5a94', url='https://gate.dataloop.ai/api/v1/datasets/63da63cab9421abb1ddd5a94', name='dataset_v2', creator='email@gmail.com', items_count=1, expiration_options=None, index_driver='v1', created_at='2023-02-01T13:06:18.801Z'),
+ Dataset(id='63da644a4d9815630ac3d50f', url='https://gate.dataloop.ai/api/v1/datasets/63da644a4d9815630ac3d50f', name='First_second_merged_dataset', creator='email@gmail.com', items_count=1, expiration_options=None, index_driver='v1', created_at='2023-02-01T13:08:26.592Z'),
+ Dataset(id='63e6280e6a656962930ec4b9', url='https://gate.dataloop.ai/api/v1/datasets/63e6280e6a656962930ec4b9', name='Binaries', creator='email@gmail.com', items_count=15, expiration_options=None, index_driver='v1', created_at='2023-02-10T11:18:38.717Z'),
+ Dataset(id='63e6283b4a03c631b54725ec', url='https://gate.dataloop.ai/api/v1/datasets/63e6283b4a03c631b54725ec', name='Creatures', creator='email@gmail.com', items_count=1132, expiration_options=None, index_driver='v1', created_at='2023-02-10T11:19:23.239Z')
+```
+-
+If you want to list all Datasets available in the current Project, you must first `proj = dl.projects.get(project_name='project_name')` a Project, and then use:
+
+```python
+proj.datasets.list()
+#or
+dl.datasets.list()
+```
+Both lines of code will do the same thing, after you selected a Project - which is printing all of the Datasets available in the Project you selected:
+```python
+[Dataset(id='645cd5d2702bd26db5ff8d5e', url='https://gate.dataloop.ai/api/v1/datasets/645cd5d2702bd26db5ff8d5e', name='Binaries', creator='email@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-05-11T11:47:30.314Z'),
+ Dataset(id='645e54554da72568414553b7', url='https://gate.dataloop.ai/api/v1/datasets/645e54554da72568414553b7', name='Test_Dataset', creator='email@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-05-12T14:59:33.939Z')]
+```
+-
+You can also use this method to print **only** a particular Dataset's details, by using its name:
+```python
+dl.datasets.list(name = 'Test_Dataset')
+```
+The output to this is a singe Dataset's detail, if you use the right Dataset name:
+```python
+[Dataset(id='645e54554da72568414553b7', url='https://gate.dataloop.ai/api/v1/datasets/645e54554da72568414553b7', name='Test_Dataset', creator='email@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-05-12T14:59:33.939Z')]
+```
+
+Finally, you can also use this to print all of the Datasets that were created by a specific creator:
+```python
+dl.datasets.list(creator = 'email@dataloop.ai') #put the e-mail of the creator here
+```
+
