@@ -4,7 +4,7 @@ In this guide, we will describe how to use each method in the `dtlpy.datasets` a
 
 --------------------------
 
-[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) | [dl.datasets.list()](#list) | [dl.datasets.merge()](#merge)
+[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) | [dl.datasets.list()](#list) | [dl.datasets.merge()](#merge) | [dl.datasets.open_in_web()](#open_in_web)
 
 ---------------------------
 
@@ -609,3 +609,51 @@ Dataset(id='6463bc5eb0a8f67d41b9b39e', url='https://gate.dataloop.ai/api/v1/data
 ```
 
 **Note:** The Datasets that were merged will not be deleted. They will still be available to be used individually after the merge is completed.
+
+# <a name="open_in_web"></a> dl.datasets.open_in_web()
+
+The `dl.datasets.open_in_web()` method opens the Datasets in the WebUI of Dataloop. You can open a Dataset in the WebUI by using its ID or Name.
+
+See all details of this function below.
+
+## open_in_web()
+
+**Definition:** `open_in_web(dataset_name: str=None, dataset_id: str=None, dataset: entities.Dataset=None)`
+
+***Opens the Dataset in webUI of Dataloop's platform.***
+
+**Prerequisites:** You must be an Owner or Developer (engineer) to use this method.
+
+**param str dataset_name**
+- The Name of the Dataset
+
+**param str dataset_id**
+- The Id of the Dataset
+
+**param dtlpy.entities.dataset.Dataset dataset**
+- Dataset object
+
+**Example:**
+```python
+proj.datasets.open_in_web(dataset_id='dataset_id') #or dl.
+or
+dl.datasets.open_in_web(dataset_id='dataset_id')#or proj. (Project object's name)
+```
+You can open a Dataset in WebUI in 3 different ways. You can use the `open_in_web` method on an Dataset object/variable you defined, use it on a Datast by Name or using the Dataset's ID. See all methods below:
+```python
+# dataset is an Dataset Object/Variable that you got using the `get` code for datasets below:
+# dataset = dl.datasets.get(dataset_name='dataset_name') # replace with your dataset's name
+dataset.open_in_web() 
+#or
+dl.datasets.open_in_web(dataset_name='Test_Dataset')#or proj. (project variable/object)
+
+#or
+
+proj.datasets.open_in_web(dataset_id='6463bc5eb0a8f67d41b9b39e')#or dl.
+
+# or open all datasets in the current active Project
+dl.datasets.open_in_web()
+```
+
+All of the code line above, should open the Dataset in the WebUi of Dataloop, which should look like the image below:
+![image.png](attachment:image.png)
