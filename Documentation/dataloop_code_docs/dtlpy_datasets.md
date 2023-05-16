@@ -4,7 +4,7 @@ In this guide, we will describe how to use each method in the `dtlpy.datasets` a
 
 --------------------------
 
-[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) | [dl.datasets.list()](#list)
+[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) | [dl.datasets.list()](#list) | [dl.datasets.merge()](#merge)
 
 ---------------------------
 
@@ -514,3 +514,98 @@ Finally, you can also use this to print all of the Datasets that were created by
 dl.datasets.list(creator = 'email@dataloop.ai') #put the e-mail of the creator here
 ```
 
+# <a name="merge"></a> dl.datasets.merge()
+
+The `dl.datasets.merge()` method allows you to merge 2 Datasets together. However, for the `merge()` to be performed successfully, the 2 Datasets need to have the same [Recipe and Ontology](https://dataloop.ai/docs/taxonomy-overview). [Read more about Working with Recipes](https://developers.dataloop.ai/tutorials/recipe_and_ontology/recipe/chapter/).
+
+Below, you can find all the details about this method.
+
+## merge()
+
+**Definition:** `merge(merge_name: str, dataset_ids: list, project_ids: str, with_items_annotations: bool=True, with_metadata: bool=True, with_task_annotations_status: bool=True, wait: bool=True)`
+
+***Merges 2 Datasets that have the same Recipe and Ontology.***
+
+**Prerequisites:** You must be an Owner or Developer(engineer) to use this method.
+
+**param str merge_name**
+- new Dataset's name
+
+**param list dataset_ids**
+- list ID's of the Datatsets you wish to merge
+
+**param str project_ids**
+- the Project id that include the Datasets
+
+**param bool with_items_annotations**
+- true to merge with Item Annotations
+
+**param bool with_metadata**
+- true to merge with Metadata
+
+**param bool with_task_annotations_status**
+- true to merge with Task Annotations' status
+
+**param bool wait**
+- wait for the command to finish
+
+**return**
+- True if success
+
+**rtype**
+- bool
+
+**Basic Example**:
+```python
+project.datasets.merge(dataset_ids=['dataset_id1','dataset_id2'],
+                      merge_name='dataset_merge_name',
+                      with_metadata=True,
+                      with_items_annotations=False,
+                      with_task_annotations_status=False)
+```
+
+To provide an easy example on how to merge 2 Datasets, we will clone the `Test_Dataset` we created. The new Dataset that we clone will be named `Test_Dataset_Clone`. We do this because a cloned Dataset will have the same Recipe and Ontology as the original. This way we can show how we can merge the 2 Datasets into a new Dataset called `Test_Dataset_Merged`.
+
+First, let's create the clone named `Test_Dataset_Clone`:
+```python
+proj.datasets.clone(dataset_id='645cee1b05c36859784c0b37',
+                      clone_name='Test_Dataset_Clone',
+                      with_metadata=True,
+                      with_items_annotations=False,#True if you want
+                      with_task_annotations_status=False)#True if you want
+```
+As an output to this operation, we should see the new (cloned) Dataset's ID, among other details:
+```python
+Dataset(id='6463baba74592a2c2b30f399', url='https://gate.dataloop.ai/api/v1/datasets/6463baba74592a2c2b30f399', name='Test_Dataset_Clone', creator='email@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-05-16T17:17:46.938Z')
+```
+
+We cab then merge `Test_Dataset` with `Test_Dataset_Clone`, as we now know both Datasets' IDs (remember that the ID's used in this tutorial will be different from the ones you will get). You will also need the Project IDs for each Dataset - if they are in the same Project, the ID will be the same for Project's IDs. You can find your Project ID by running the line of code below (with your Project Object's name):
+```python
+proj.print
+#or
+print(proj)
+```
+Now, you can add the 2 Dataset's IDs and the Project ID(s) to the line of code below, to merge the 2 Datasets together:
+```python
+dl.datasets.merge(dataset_ids=['645cee1b05c36859784c0b37','6463baba74592a2c2b30f399'],
+                      merge_name='Test_Dataset_Merge',
+                      with_metadata=True,
+                      with_items_annotations=False,
+                      with_task_annotations_status=False)
+```
+If the merge is successful, you should see a progress bar and a `True` output:
+```python
+Command Progress: 100%|██████████████████████████████████████████████████████████████| 100/100 [00:01<00:00, 53.55it/s]
+True
+```
+You can now check if the 2 Datasets were merged into a new one by trying to `get()` it and print its details:
+```python
+merged_dataset= dl.datasets.get(dataset_name='Test_Dataset_Merge')
+print(merged_dataset)
+```
+And you should get as an Output, the details of the Dataset you just created by merging 2 Datasets:
+```python
+Dataset(id='6463bc5eb0a8f67d41b9b39e', url='https://gate.dataloop.ai/api/v1/datasets/6463bc5eb0a8f67d41b9b39e', name='Test_Dataset_Merge', creator='email@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-05-16T17:24:46.333Z')
+```
+
+**Note:** The Datasets that were merged will not be deleted. They will still be available to be used individually after the merge is completed.
