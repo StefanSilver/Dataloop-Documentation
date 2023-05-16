@@ -609,7 +609,7 @@ Dataset(id='6463bc5eb0a8f67d41b9b39e', url='https://gate.dataloop.ai/api/v1/data
 ```
 
 **Note:** The Datasets that were merged will not be deleted. They will still be available to be used individually after the merge is completed.
-
+----------------------------------------------------------
 # <a name="open_in_web"></a> dl.datasets.open_in_web()
 
 The `dl.datasets.open_in_web()` method opens the Datasets in the WebUI of Dataloop. You can open a Dataset in the WebUI by using its ID or Name.
@@ -656,4 +656,5 @@ dl.datasets.open_in_web()
 ```
 
 All of the code line above, should open the Dataset in the WebUi of Dataloop, which should look like the image below:
-![image.png](attachment:image.png)
+![image](https://github.com/StefanSilver/Dataloop-Documentation/assets/58508793/df2d4c30-f64e-4c0d-8390-f3db529a74f5)
+
