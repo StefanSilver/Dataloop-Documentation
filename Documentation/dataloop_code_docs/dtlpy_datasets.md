@@ -4,7 +4,7 @@ In this guide, we will describe how to use each method in the `dtlpy.datasets` a
 
 --------------------------
 
-[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) | [dl.datasets.list()](#list) | [dl.datasets.merge()](#merge) | [dl.datasets.open_in_web()](#open_in_web) | [dl.datasets.set_readonly()](#set_readonly)
+[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) | [dl.datasets.list()](#list) | [dl.datasets.merge()](#merge) | [dl.datasets.open_in_web()](#open_in_web) | [dl.datasets.set_readonly()](#set_readonly) | [dl.datasets.update()](#update)
 
 ---------------------------
 
@@ -716,4 +716,47 @@ Output:
 To deactivate the Read-Only mode of the Dataset, use the code below:
 ```python
 dl.datasets.set_readonly(dataset=d_set, state=False)
+```
+
+-----------------------------------------
+# <a name="update"></a> dl.datasets.update()
+
+The `dl.datasets.update()` method allows you to update the Dataset with the latest changes.
+
+You can see all the details of this method below.
+
+## update
+**Definition:** `update(dataset: entities.Dataset, system_metadata: bool=False, patch: dict=None) -> entities.Dataset`
+
+***Update dataset field.***
+
+**Prerequisites:** You must be an Owner or Developer (engineer) to use this method.
+
+**param dtlpy.entities.dataset.Dataset dataset**
+- Dataset object
+
+**param bool system_metadata**
+- True, if you want to change metadata system
+
+**param dict patch**
+- Specific patch request
+
+**return**
+- Dataset object
+
+**rtype**
+- dtlpy.entities.dataset.Dataset
+
+**Example:**
+```python
+dataset = project.datasets.update(dataset_entity)
+```
+
+You can see working code below, on our example Dataset:
+```python
+d_set = dl.datasets.update(d_set) # or proj.datasets.update(d_set)
+```
+The output of this method is a Dataset Object. That output looks like this:
+```python
+Dataset(id='645e54554da72568414553b7', url='https://gate.dataloop.ai/api/v1/datasets/645e54554da72568414553b7', name='Test_Dataset', creator='email@gmail.com', items_count=0, expiration_options=None, index_driver='v1', created_at='2023-05-12T14:59:33.939Z')
 ```
