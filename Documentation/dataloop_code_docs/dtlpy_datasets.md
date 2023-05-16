@@ -4,7 +4,7 @@ In this guide, we will describe how to use each method in the `dtlpy.datasets` a
 
 --------------------------
 
-[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) | [dl.datasets.list()](#list) | [dl.datasets.merge()](#merge) | [dl.datasets.open_in_web()](#open_in_web)
+[dl.datasets.create()](#create) | [dl.datasets.get()](#get) | [dl.datasets.clone()](#clone) | [dl.datasets.delete()](#delete) | [dl.datasets.directory_tree()](#directory_tree) | [dl.datasets.download_annotations()](#download_annotations) | [dl.datasets.list()](#list) | [dl.datasets.merge()](#merge) | [dl.datasets.open_in_web()](#open_in_web) | [dl.datasets.set_readonly()](#set_readonly)
 
 ---------------------------
 
@@ -658,3 +658,62 @@ dl.datasets.open_in_web()
 All of the code line above, should open the Dataset in the WebUi of Dataloop, which should look like the image below:
 ![image](https://github.com/StefanSilver/Dataloop-Documentation/assets/58508793/df2d4c30-f64e-4c0d-8390-f3db529a74f5)
 
+------------------------------------------------------------------------
+
+# <a name="set_readonly"></a> dl.datasets.set_readonly()
+
+The `dl.datasets.set_readonly()` method allows you to make the Dataset Read-Only, which means that only the users having the Owner role can modify it after they deactivate the Read-Only mode.
+
+You can see the details of this method, below.
+
+## set_readonly()
+
+**Definition:** `set_readonly(state: bool, dataset: entities.Dataset)`
+
+***Set Dataset's Read-Only mode.***
+
+**Prerequisites:** You must be in the role of an Owner.
+
+**param bool state**
+- state to update readonly mode
+
+**param dtlpy.entities.dataset.Dataset dataset**
+- dataset object
+
+**Example:**
+```python
+project.datasets.set_readonly(dataset='dataset_entity', state=True)
+```
+Below, you will see an example of this method being implemented for the `Test_Dataset` Dataset object we created:
+```python
+# d_set is the dataset object/variable we created using:
+# d_set = dl.datasets.create(dataset_name=`Test_Dataset`)
+d_set = dl.datasets.get(dataset_name='Test_Dataset') 
+dl.datasets.set_readonly(dataset=d_set, state=True)
+```
+This will set the Dataset as Read-Only, which means that no modifications can be done to the Items, Recipes, Ontologies, Annotations, etc. inside of it. To prove that, we will create a new Label called "Dog" and then try to delete it. First, we create the new Label:
+```python
+d_set.add_label(label_name="Dog") #Adds a new label called Dog
+d_set.labels #used to list all labels from the dataset
+```
+By running the code above, you should get this output and all other Labels you have inside of the Dataset:
+```python
+[Label(tag='Dog', display_data={}, color='#01d1c0', display_label='Dog', attributes=[], children=[])]
+```
+Now we will try deleting the Label using this code:
+```python
+d_set.delete_labels(label_names='Dog')
+```
+Now, if we try to list the Lables in the Dataset, we will see that the "Dog" Label is still present:
+```python
+d_set.labels
+```
+Output:
+```python
+[Label(tag='Dog', display_data={}, color='#01d1c0', display_label='Dog', attributes=[], children=[])]
+```
+
+To deactivate the Read-Only mode of the Dataset, use the code below:
+```python
+dl.datasets.set_readonly(dataset=d_set, state=False)
+```
