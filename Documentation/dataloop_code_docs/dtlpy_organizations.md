@@ -35,3 +35,62 @@ if dl.token_expired():
 #you can also use the simple login: 
 #dl.login()
 ```
+-----------------------------------------------
+## <a name="add_member"></a> dl.organizations.add_member()
+The `dl.organizations.add_member()` method allows you add a new member in the Organization that you are currently working on.
+
+You can see all of the details of this function, below.
+
+
+### add_member()
+**Definition:** `add_member(email: str, role: entities.MemberOrgRole=entities.MemberOrgRole.MEMBER, organization_id: str=None, organization_name: str=None, organization: entities.Organization=None)`
+
+***Adds members to your Organization.***
+
+**Prerequisities:** To add members to an organization, you must be an owner in that organization. You must provide at least ONE of the following params: `organization`, `organization_name`, or `organization_id`.
+
+**param str email**
+- the member's email
+
+**param str role**
+- MemberOrgRole.ADMIN, MemberOrgRole.OWNER, MemberOrgRole.MEMBER, MemberOrgRole.WORKER
+
+**param str organization_id**
+- Organization id
+
+**param str organization_name**
+- Organization name
+
+**param entities.Organization organization**
+- Organization object
+
+**return**
+- True if successful or error if unsuccessful
+
+**rtype**
+- bool
+
+**Example:**
+```python
+dl.organizations.add_member(email='user@domain.com',
+                            organization_id='organization_id',
+                            role=dl.MemberOrgRole.MEMBER)
+```
+To find out your Organization's Id, run the code below, which will list all Organizations you have access to:
+```python
+dl.organizations.list()
+```
+
+
+The output should look similar to what you see below; and the `org` holds the ID of your Organization (in this case the id is `8c8387a3-e771-4d2b-ad77-6a30294dbd01`):
+```python
+Organization(members=[{'createdAt': 1673461599365, 'updatedAt': 1684341970595, 'id': 'email@gmail.com', 'username': 'email@gmail.com', 'firstName': 'email', 'lastName': None, 'email': 'myfuncont@gmail.com', 'avatar': 'https://lh3.googleusercontent.com/a/AEdFTp6uAS-yuhaaI-EU3BFR0fgHpd1_UJ7LS2_W3pXl=s96-c', 'type': None, 'lastLogin': 1684262059553, 'lastLogout': 1680528866969, 'interest': 'dataScience', 'boarded': True, 'hash': 'c32a01dfbaf29ac953bde5afba936af81dcea03cfabd61d5f28ad3f025f41435', 'timezone': None, 'cookieApproval': 1675420416926, 'org': '18739a63-4393-43ea-a87e-9a284b14978f'}], groups=[], account={'createdAt': 1674222447241, 'updatedAt': 1674222447241, 'id': '08e52acc-107c-4503-9997-0f8e99acaef1', 'name': "ssssssss's account", 'owner': 'email@gmail.com', 'org': '8c8387a3-e771-4d2b-ad77-6a30294dbd01', 'creator': 'myfuncont@gmail.com'}, created_at=1674222447224, updated_at=1674222447257)]
+```
+Once we have that , we can run the example code above, using this ID and the e-mail of the user we want to add to our Organization; remember you can set the role of the new user you are adding (MEMBER, OWNER, ADMIN, WORKER):
+```python
+dl.organizations.add_member(email='user@domain.com',
+                            organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01',
+                            role=dl.MemberOrgRole.MEMBER)
+```
+The output should be a simple `True` if you added the new user successfully, or `False` if the operation failed.
+
