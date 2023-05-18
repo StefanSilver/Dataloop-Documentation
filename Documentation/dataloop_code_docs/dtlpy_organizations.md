@@ -20,7 +20,7 @@ In this Documentation we will explore all of the methods available for the `dtlp
 
 ------------------------
 
-[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | [dl.organizations.list_groups()](#list_groups) | [dl.organizations.list_integrations()](#list_integrations) | [dl.organizations.list_members()](#list_members) | [dl.organizations.update()](#update) | 
+[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | [dl.organizations.list_groups()](#list_groups) | [dl.organizations.list_integrations()](#list_integrations) | [dl.organizations.list_members()](#list_members) | [dl.organizations.update()](#update) | [dl.organizations.update_member()](#update_member)
 
 ------------------------
 
@@ -537,3 +537,75 @@ Forbidden: ('403', ' You are not permitted to perform this  action. ')
 ```
 
 -----------------------------------
+## <a name="update_member"></a> dl.organizations.update_member()
+The `dl.organizations.update_member()` method allows you to update a member's details and permissions (role) in the Organization you select, if you are an Owner or Superuser in that Organization.
+
+You can see all of the details of this function, below.
+
+### update_member()
+
+**Definition:** `update_member(email: str, role: entities.MemberOrgRole=entities.MemberOrgRole.MEMBER, organization_id: str=None, organization_name: str=None, organization: entities.Organization=None)`
+
+***Updates a member's role.***
+
+**Prerequisites:** You must be an organization owner to update a member's role. You must provide at least ONE of the following params: `organization`, `organization_name`, or `organization_id`, `email` and `role`.
+
+**param str email**
+the member's email
+
+**param str role**
+MemberOrgRole.ADMIN, MemberOrgRole.OWNER, MemberOrgRole.MEMBER, MemberOrgRole.WORKER
+
+**param str organization_id**
+Organization id
+
+**param str organization_name**
+Organization name
+
+**param entities.Organization organization**
+Organization object
+
+**return**
+json of the member fields
+
+**rtype**
+dict
+
+Example:
+```python
+member_json = dl.organizations.update_member(email='user@domain.com',
+                                organization_id='organization_id',
+                                 role=dl.MemberOrgRole.MEMBER)
+```
+A working code for this method would look like this
+```python
+dl.organizations.update_member(organization_id='18739a63-4393-43ea-a87e-9a284b14978f',email = 'email@gmail.com', role=dl.MemberOrgRole.OWNER)
+#or
+dl.organizations.update_member(organization_name='Dataloop',email = 'email@gmail.com', role=dl.MemberOrgRole.MEMBER)
+#or
+org_entity = dl.organizations.get(organization_name='Dataloop')
+dl.organizations.update_member(organization = org_entity,email = 'email@gmail.com', role=dl.MemberOrgRole.ADMIN) # and the last role is .WORKER
+```
+If the code executes successfully, you will get a list of all users in the Organization, including the User you Updated, having the new role you set:
+```python
+[{'role': 'admin',
+  'membershipType': 'org',
+  'membershipEntityId': '18739a63-4393-43ea-a87e-9a284b14978f',
+  'createdAt': 1598174769386,
+  'updatedAt': 1684139934204,
+  'id': 'email@dataloop.ai',
+  'username': 'email@dataloop.ai',
+  'firstName': 'John',
+  'lastName': 'Cena',
+  'email': 'email@dataloop.ai',
+  'avatar': 'https://lh3.googleusercontent.com/a-/AOh14Gi4ZcamlWOpNScD5bOXwW-JntmGxTIbd7tS0KJP',
+  'type': None,
+  'lastLogin': 1684136445855,
+  'lastLogout': None,
+  'interest': None,
+  'boarded': True,
+  'hash': '3f9b9b8f35c8fde629bca872d69eea000c1cf7aa4a44197a181bd5dd62c9d5ad',
+  'timezone': 'US/Hawaii',
+  'cookieApproval': 1675262956183,
+  'org': '18739a63-4393-43ea-a87e-9a284b14978f'}
+```
