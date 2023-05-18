@@ -204,12 +204,12 @@ You can see all of the details of this function, below.
 
 **Example:**
 ```python
-dl.organizations.enable_cache(organization_id='organization_id',
+dl.organizations.cache_action(organization_id='organization_id',
                               mode=dl.CacheAction.APPLY) #or .DESTROY
 ```
 A working code would look like this, with your own Organization ID:
 ```python
-dl.organizations.enable_cache(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01',
+dl.organizations.cache_action(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01',
                               mode=dl.CacheAction.APPLY)
 ```
 To find out your Organization's Id, run the code below, which will list all Organizations you have access to:
