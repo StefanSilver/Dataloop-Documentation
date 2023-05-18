@@ -164,6 +164,8 @@ dl.organizations.delete_member(user_id='6cdfccfb-ab06-4ed2-a585-b3a6674c1dc8',
                                 sure=True,
                                 really=True)
 ```
+
 The output should be a simple `True` if you added the new user successfully, or `False` if the operation failed.
+
 ------------------------------------------
 
