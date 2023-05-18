@@ -168,4 +168,52 @@ dl.organizations.delete_member(user_id='6cdfccfb-ab06-4ed2-a585-b3a6674c1dc8',
 The output should be a simple `True` if you added the new user successfully, or `False` if the operation failed.
 
 ------------------------------------------
+## <a name="cache_action"></a> dl.organizations.cache_action()
+The `dl.organizations.cache_action()` method allows you to add or remove Cache for an Organization that you own (are Admin/Owner) to.
 
+You can see all of the details of this function, below.
+
+### cache_action()
+
+**Definition:** `cache_action(organization_id: str=None, organization_name: str=None, organization: entities.Organization=None, mode=entities.CacheAction.APPLY, pod_type=entities.PodType.SMALL)`
+
+***Adds or remove Cache for an Organization you own.***
+
+**Prerequisites:** You must be an organization owner. You must provide at least ONE of the following params: `organization`, `organization_name`, or `organization_id`.
+
+**param str organization_id**
+- Organization id
+
+**param str organization_name**
+- Organization name
+
+**param entities.Organization organization**
+- Organization object
+
+**param str mode**
+- dl.CacheAction.APPLY or dl.CacheAction.DESTROY
+
+**param entities.PodType pod_type**
+- dl.PodType.SMALL, dl.PodType.MEDIUM, dl.PodType.HIGH
+
+**return**
+- True if success
+
+**rtype**
+- bool
+
+**Example:**
+```python
+dl.organizations.enable_cache(organization_id='organization_id',
+                              mode=dl.CacheAction.APPLY) #or .DESTROY
+```
+A working code would look like this, with your own Organization ID:
+```python
+dl.organizations.enable_cache(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01',
+                              mode=dl.CacheAction.APPLY)
+```
+To find out your Organization's Id, run the code below, which will list all Organizations you have access to:
+```python
+dl.organizations.list()
+```
+------------
