@@ -20,7 +20,7 @@ In this Documentation we will explore all of the methods available for the `dtlp
 
 ------------------------
 
-[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | [dl.organizations.list_groups()](#list_groups) | [dl.organizations.list_integrations()](#list_integrations) | [dl.organizations.list_members()](#list_members) |
+[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | [dl.organizations.list_groups()](#list_groups) | [dl.organizations.list_integrations()](#list_integrations) | [dl.organizations.list_members()](#list_members) | [dl.organizations.update()](#update) | 
 
 ------------------------
 
@@ -479,3 +479,61 @@ The output should look like this:
  User(created_at=1635162156689, name='name', last_name='lastname', username='email@dataloop.ai', email='email@dataloop.ai', role='owner', type=None, org='38ba8434-747a-49d4-b1s1-d73ees74e2f8', id='email@dataloop.ai')]
 ```
 --------------------------
+## <a name="update"></a> dl.organizations.update()
+The `dl.organizations.update()` method allows you to update the Organization you select, if you are a Superuser in that Organization.
+
+You can see all of the details of this function, below.
+
+### update()
+
+**Definition:** `update(plan: str, organization: entities.Organization=None, organization_id: str=None, organization_name: str=None) -> entities.Organization`
+
+***Updates an Organization.***
+
+**Prerequisites:** You must be a superuser to update an organization. You must provide at least ONE of the following params: `organization`, `organization_name`, or `organization_id` and the `plan` parameter.
+
+**param str plan**
+- OrganizationsPlans.FREEMIUM, OrganizationsPlans.PREMIUM
+
+**param entities.Organization organization**
+- Organization object
+
+**param str organization_id**
+- Organization id
+
+**param str organization_name**
+- Organization name
+
+**return**
+- organization object
+
+**rtype**
+- dtlpy.entities.organization.Organization
+
+**Example:**
+```python
+dl.organizations.update(organization='organization-entity',
+                        plan=dl.OrganizationsPlans.FREEMIUM)
+```
+
+An example of working code for updating an Organization can be seen below:
+```python
+dl.organizations.update(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01',plan=dl.OrganizationsPlans.FREEMIUM)#.PREMIUM if you are a paying user
+#or
+dl.organizations.update(organization_name='Dataloop',plan=dl.OrganizationsPlans.FREEMIUM)#.PREMIUM if you are a paying user
+
+#or, if you want to use an Organization Object/Variable/Entity
+org_entity=dl.organizations.get(organization_name='Dataloop')
+dl.organizations.update(organization = org_entity,plan=dl.OrganizationsPlans.FREEMIUM)#.PREMIUM if you are a paying user
+```
+If everything goes right, and you have the required access, you will get back an Organization Object, listing the current state of your Organization:
+```python
+Organization(members=[{'createdAt': 1673461599365, 'updatedAt': 1684341970595, 'id': 'email@gmail.com', 'username': 'email@gmail.com', 'firstName': 'email', 'lastName': None, 'email': 'email@gmail.com', 'avatar': 'https://lh3.googleusercontent.com/a/AEdFTp6uAS-yuhaaI-EU3BFR0fgHpd1_UJ7LS2_W3pXl=s96-c', 'type': None, 'lastLogin': 1684262059553, 'lastLogout': 1680528866969, 'interest': 'dataScience', 'boarded': True, 'hash': 'c32a01dfbaf29ac953bde5afba936af81dcea03cfabd61d5f28ad3f025f41435', 'timezone': None, 'cookieApproval': 1675420416926, 'org': '18739a63-4393-43ea-a87e-9a284b14978f'}], groups=[], account={'createdAt': 1674222447241, 'updatedAt': 1674222447241, 'id': '08e52acc-107c-4503-9997-0f8e99acaef1', 'name': "ssssssss's account", 'owner': 'email@gmail.com', 'org': '8c8387a3-e771-4d2b-ad77-6a30294dbd01', 'creator': 'email@gmail.com'}, created_at=1674222447224, updated_at=1674222447257)]
+```
+
+If you don't have the required permissions, you will get this error:
+```python
+Forbidden: ('403', ' You are not permitted to perform this  action. ')
+```
+
+-----------------------------------
