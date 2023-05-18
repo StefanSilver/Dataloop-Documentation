@@ -19,7 +19,7 @@ In Dataloop, an Organization refers to a management entity that provides a conte
 In this Documentation we will explore all of the methods available for the `dtlpy.organizations` in detail. If you want to look for a specific method, you can click one of the links below, which will take you to the method you are looking for.
 ------------------------
 
-
+[dl.organizations.add_member()](#add_member()) | [dl.organizations.delete_member()](#delete_member()) |
 
 ------------------------
 
@@ -93,4 +93,76 @@ dl.organizations.add_member(email='user@domain.com',
                             role=dl.MemberOrgRole.MEMBER)
 ```
 The output should be a simple `True` if you added the new user successfully, or `False` if the operation failed.
+--------------------------
+## <a name="delete_member"></a> dl.organizations.delete_member()
+The `dl.organizations.delete_member()` method allows you delete a member in the Organization that you are currently working on.
+
+You can see all of the details of this function, below.
+
+
+### delete_member()
+**Definition:** `delete_member(user_id: str, organization_id: str=None, organization_name: str=None, organization: entities.Organization=None, sure: bool=False, really: bool=False) -> bool`
+
+***Deletes member from the Organization.***
+
+**Prerequisites:** Must be an organization Owner to delete members. You must provide at least ONE of the following params: `organization_id`, `organization_name`, `organization`.
+
+**param str user_id**
+- user id
+
+**param str organization_id**
+- Organization id
+
+**param str organization_name**
+- Organization name
+
+**param entities.Organization organization**
+- Organization object
+
+**param bool sure**
+- Are you sure you want to delete?
+
+**param bool really**
+- Are you surely sure that you want to delete?
+
+**return**
+- True if success and error if not
+
+**rtype**
+- bool
+
+**Example:**
+```python
+dl.organizations.delete_member(user_id='user_id',
+                                organization_id='organization_id',
+                                sure=True,
+                                really=True)
+```
+To find out your Organization's Id, run the code below, which will list all Organizations you have access to:
+```python
+dl.organizations.list()
+```
+The output should look similar to what you see below; and the `org` holds the ID of your Organization (in the case of this Organization the id is `8c8387a3-e771-4d2b-ad77-6a30294dbd01` - yours will be different):
+```python
+Organization(members=[{'createdAt': 1673461599365, 'updatedAt': 1684341970595, 'id': 'email@gmail.com', 'username': 'email@gmail.com', 'firstName': 'email', 'lastName': None, 'email': 'myfuncont@gmail.com', 'avatar': 'https://lh3.googleusercontent.com/a/AEdFTp6uAS-yuhaaI-EU3BFR0fgHpd1_UJ7LS2_W3pXl=s96-c', 'type': None, 'lastLogin': 1684262059553, 'lastLogout': 1680528866969, 'interest': 'dataScience', 'boarded': True, 'hash': 'c32a01dfbaf29ac953bde5afba936af81dcea03cfabd61d5f28ad3f025f41435', 'timezone': None, 'cookieApproval': 1675420416926, 'org': '18739a63-4393-43ea-a87e-9a284b14978f'}], groups=[], account={'createdAt': 1674222447241, 'updatedAt': 1674222447241, 'id': '08e52acc-107c-4503-9997-0f8e99acaef1', 'name': "ssssssss's account", 'owner': 'email@gmail.com', 'org': '8c8387a3-e771-4d2b-ad77-6a30294dbd01', 'creator': 'email@gmail.com'}, created_at=1674222447224, updated_at=1674222447257)]
+```
+Once we have the Organization ID, we  also need the User's ID. To find the users in our Organization, and their IDs, we can run the code below:
+
+```python
+dl.organizations.list_members(organization_id='18739a63-4393-43ea-a87e-9a284b14978f')#your id will be different
+```
+Which will have an output similar to this; you need to take the `id` field, which we will use to delete the user:
+```python
+[User(created_at=1673461599365, name='email', last_name=None, username='email@gmail.com', email='email@gmail.com', role='owner', type=None, org='18739a63-4393-43ea-a87e-9a284b14978f', id='email@gmail.com'),
+ User(created_at=1684342458768, name=None, last_name=None, username=None, email=None, role='member', type=None, org='8c8387a3-e771-4d2b-ad77-6a30294dbd01', id='6cdfccfb-ab06-4ed2-a585-b3a6674c1dc8')]
+```
+Remember you can set the role of the new user you are adding (MEMBER, OWNER, ADMIN, WORKER):
+```python
+dl.organizations.delete_member(user_id='6cdfccfb-ab06-4ed2-a585-b3a6674c1dc8',
+                                organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01',
+                                sure=True,
+                                really=True)
+```
+The output should be a simple `True` if you added the new user successfully, or `False` if the operation failed.
+------------------------------------------
 
