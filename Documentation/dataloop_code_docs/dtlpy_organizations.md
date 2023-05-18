@@ -20,7 +20,7 @@ In this Documentation we will explore all of the methods available for the `dtlp
 
 ------------------------
 
-[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) 
+[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | 
 
 ------------------------
 
@@ -260,3 +260,34 @@ You should get an output similar to this:
 Organization(members=[{'createdAt': 1673461599365, 'updatedAt': 1684343644071, 'id': 'email@gmail.com', 'username': 'email@gmail.com', 'firstName': 'email', 'lastName': None, 'email': 'email@gmail.com', 'avatar': 'https://lh3.googleusercontent.com/a/AEdFTp6uAS-yuhaaI-EU3BFR0fgHpd1_UJ7LS2_W3pXl=s96-c', 'type': None, 'lastLogin': 1684262059553, 'lastLogout': 1680528866969, 'interest': 'dataScience', 'boarded': True, 'hash': 'c32a01dfbaf29ac953bde5afba936af81dcea03cfabd61d5f28ad3f025f41435', 'timezone': None, 'cookieApproval': 1675420416926, 'org': '18739a63-4393-43ea-a87e-9a284b14978f'}], groups=[], account={'createdAt': 1674222447241, 'updatedAt': 1674222447241, 'id': '08e52acc-107c-4503-9997-0f8e99acaef1', 'name': "ssssssss's account", 'owner': 'email@gmail.com', 'org': '8c8387a3-e771-4d2b-ad77-6a30294dbd01', 'creator': 'email@gmail.com'}, created_at=1674222447224, updated_at=1674222447257)
 ```
 
+------------------------------------
+## <a name="list"></a> dl.organizations.list()
+The `dl.organizations.list()` method allows you to list all of the Organizations you have access to.
+
+You can see all of the details of this function, below.
+
+### list()
+
+**Definition:** `list() -> miscellaneous.List[entities.Organization]`
+
+***Lists all the organizations in Dataloop.***
+
+**Prerequisites:** You must be a superuser to use this method.
+
+**return**
+- List of Organization objects
+
+**rtype**
+- list
+
+**Example:**
+```python
+dl.organizations.list()
+```
+The output of this will be a list of all of the Organizations you have access to, and the users inside each organization:
+
+```python
+Organization(members=[{'createdAt': 1673461599365, 'updatedAt': 1684341970595, 'id': 'email@gmail.com', 'username': 'email@gmail.com', 'firstName': 'email', 'lastName': None, 'email': 'email@gmail.com', 'avatar': 'https://lh3.googleusercontent.com/a/AEdFTp6uAS-yuhaaI-EU3BFR0fgHpd1_UJ7LS2_W3pXl=s96-c', 'type': None, 'lastLogin': 1684262059553, 'lastLogout': 1680528866969, 'interest': 'dataScience', 'boarded': True, 'hash': 'c32a01dfbaf29ac953bde5afba936af81dcea03cfabd61d5f28ad3f025f41435', 'timezone': None, 'cookieApproval': 1675420416926, 'org': '18739a63-4393-43ea-a87e-9a284b14978f'}], groups=[], account={'createdAt': 1674222447241, 'updatedAt': 1674222447241, 'id': '08e52acc-107c-4503-9997-0f8e99acaef1', 'name': "ssssssss's account", 'owner': 'email@gmail.com', 'org': '8c8387a3-e771-4d2b-ad77-6a30294dbd01', 'creator': 'email@gmail.com'}, created_at=1674222447224, updated_at=1674222447257)]
+```
+
+-------------------
