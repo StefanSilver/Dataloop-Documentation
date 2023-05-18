@@ -204,13 +204,16 @@ You can see all of the details of this function, below.
 
 **Example:**
 ```python
-dl.organizations.cache_action(organization_id='organization_id',
+dl.organizations.cache_action(organization_id='organization_id', #or organization_name='Dataloop' (your org name)
                               mode=dl.CacheAction.APPLY) #or .DESTROY
 ```
 A working code would look like this, with your own Organization ID:
 ```python
 dl.organizations.cache_action(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01',
                               mode=dl.CacheAction.APPLY)
+# You can also use
+#dl.organizations.cache_action(organization_name='Dataloop',
+#                              mode=dl.CacheAction.APPLY)
 ```
 To find out your Organization's Id, run the code below, which will list all Organizations you have access to:
 ```python
@@ -252,7 +255,9 @@ org = dl.organizations.get(organization_id='organization_id')
 ```
 If you run the code below on your Organization's ID:
 ```python
-dl.organizations.get(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01')
+dl.organizations.get(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01') 
+# You can also use
+#dl.organizations.get(organization_name='Dataloo')
 ```
 
 You should get an output similar to this:
