@@ -551,25 +551,25 @@ You can see all of the details of this function, below.
 **Prerequisites:** You must be an organization owner to update a member's role. You must provide at least ONE of the following params: `organization`, `organization_name`, or `organization_id`, `email` and `role`.
 
 **param str email**
-the member's email
+- the member's email
 
 **param str role**
-MemberOrgRole.ADMIN, MemberOrgRole.OWNER, MemberOrgRole.MEMBER, MemberOrgRole.WORKER
+- MemberOrgRole.ADMIN, MemberOrgRole.OWNER, MemberOrgRole.MEMBER, MemberOrgRole.WORKER
 
 **param str organization_id**
-Organization id
+- Organization id
 
 **param str organization_name**
-Organization name
+- Organization name
 
 **param entities.Organization organization**
-Organization object
+- Organization object
 
 **return**
-json of the member fields
+- json of the member fields
 
 **rtype**
-dict
+- dict
 
 Example:
 ```python
