@@ -20,7 +20,7 @@ In this Documentation we will explore all of the methods available for the `dtlp
 
 ------------------------
 
-[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | [dl.organizations.list_groups()](#list_groups) | [dl.organizations.list_integrations()](#list_integrations) |
+[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | [dl.organizations.list_groups()](#list_groups) | [dl.organizations.list_integrations()](#list_integrations) | [dl.organizations.list_members()](#list_members) |
 
 ------------------------
 
@@ -336,7 +336,7 @@ dl.organizations.list_groups(organization_name='Dataloop')
 
 #or, if you want to use an Organization Object/Variable/Entity
 org_entity=dl.organizations.get(organization_name='Dataloop')
-dl.organizations.list_groups=(organization = org_entity)
+dl.organizations.list_groups(organization = org_entity)
 ```
 
 The output will look similar to this:
@@ -404,7 +404,7 @@ dl.organizations.list_integrations(organization_name='Dataloop')
 
 #or, if you want to use an Organization Object/Variable/Entity
 org_entity=dl.organizations.get(organization_name='Dataloop')
-dl.organizations.list_integrations=(organization = org_entity)
+dl.organizations.list_integrations(organization = org_entity)
 ```
 The output should look similar to this:
 ```python
@@ -426,3 +426,56 @@ The output should look similar to this:
   'creator': 'email@dataloop.ai'}
 ```
 --------------------------------
+## <a name="list_members"></a> dl.organizations.list_members()
+The `dl.organizations.list_members()` method allows you to list all of the Members that are part of your active Organization, and their specific details.
+
+You can see all of the details of this function, below.
+
+### list_members()
+
+**Definition:** `list_members(organization: entities.Organization=None, organization_id: str=None, organization_name: str=None, role: entities.MemberOrgRole=None)`
+
+**Lists all members inside of an Organization **
+
+**Prerequisites:** You must be an organization owner to use this method. You must provide at least ONE of the following params: `organization_id`, `organization_name`, or `organization`.
+
+**param entities.Organization organization**
+` Organization object
+
+**param str organization_id**
+- Organization's id
+
+**param str organization_name**
+- Organization's name
+
+**param entities.MemberOrgRole role**
+- MemberOrgRole.ADMIN, MemberOrgRole.OWNER, MemberOrgRole.MEMBER, MemberOrgRole.WORKER
+
+**return**
+- Projects list
+
+**rtype**
+- list
+
+**Example:**
+```python
+list_members = dl.organizations.list_members(organization='organization-entity',
+                            role=dl.MemberOrgRole.MEMBER)
+```
+Examples of working code of this method can be seen below:
+```python
+dl.organizations.list_members(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01')
+#or
+dl.organizations.list_members(organization_name='Dataloop')
+
+#or, if you want to use an Organization Object/Variable/Entity
+org_entity=dl.organizations.get(organization_name='Dataloop')
+dl.organizations.list_members(organization = org_entity)
+```
+The output should look like this:
+
+```python
+[User(created_at=1598174769386, name='name', last_name='lastname', username='email@dataloop.ai', email='email@dataloop.ai', role='admin', type=None, org='18739a63-4393-43ea-as7e-9a28s4b14978f', id='email@dataloop.ai'),
+ User(created_at=1635162156689, name='name', last_name='lastname', username='email@dataloop.ai', email='email@dataloop.ai', role='owner', type=None, org='38ba8434-747a-49d4-b1s1-d73ees74e2f8', id='email@dataloop.ai')]
+```
+--------------------------
