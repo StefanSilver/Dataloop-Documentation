@@ -20,7 +20,7 @@ In this Documentation we will explore all of the methods available for the `dtlp
 
 ------------------------
 
-[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | [dl.organizations.list_groups()](#list_groups) 
+[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | [dl.organizations.list_groups()](#list_groups) | [dl.organizations.list_integrations()](#list_integrations) |
 
 ------------------------
 
@@ -359,4 +359,70 @@ The output will look similar to this:
     'cookieApproval': 1675261017431,
     'org': '38ba8434-747a-49d4-b121-d73eec74e2f8'}]
 ```
+--------------------------------------
+## <a name="list_integrations"></a> dl.organizations.list_integrations()
+The `dl.organizations.list_integrations()` method allows you to list all of the Integrations you have with other external cloud storages.
 
+You can see all of the details of this function, below.
+
+### list_integrations()
+
+**Definition:** `list_integrations(organization: entities.Organization=None, organization_id: str=None, organization_name: str=None, only_available=False)`
+
+***Lists all Organization integrations with external cloud storages.***
+
+**Prerequisites:** You must be an organization owner to use this method. You must provide at least ONE of the following params: `organization_id`, `organization_name`, or `organization`.
+
+**param entities.Organization organization**
+- Organization object
+
+**param str organization_id**
+- Organization id
+
+**param str organization_name**
+- Organization name
+
+**param bool only_available**
+- if True list only the available integrations
+
+**return**
+- integrations list
+
+**rtype**
+- list
+
+**Example:**
+```python
+list_integrations = dl.organizations.list_integrations(organization='organization-entity',
+                                    only_available=True)
+```
+A working code example can be seen below, in all the ways you can use this method:
+```python
+dl.organizations.list_integrations(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01')
+#or
+dl.organizations.list_integrations(organization_name='Dataloop')
+
+#or, if you want to use an Organization Object/Variable/Entity
+org_entity=dl.organizations.get(organization_name='Dataloop')
+dl.organizations.list_integrations=(organization = org_entity)
+```
+The output should look similar to this:
+```python
+[{'metadata': [],
+  'createdAt': 1632058672444,
+  'updatedAt': 1632979485932,
+  'id': '0141s9eb-es2b-495b-bs71-40a5a4f7ss2b',
+  'name': 'Google Bucket images',
+  'type': 'gcs',
+  'org': '18739sa63-4393-4sea-a87e-9a2s4b14978f',
+  'creator': 'email@dataloop.ai'},
+ {'metadata': [],
+  'createdAt': 1660119346351,
+  'updatedAt': 1660119346351,
+  'id': '029s5574-bcs6-4ds4-bac9-1fb6ass2ca8',
+  'name': 'dadsa',
+  'type': 'key_value',
+  'org': '18739a63-43s3-43ea-a87e-9a2s4b14978f',
+  'creator': 'email@dataloop.ai'}
+```
+--------------------------------
