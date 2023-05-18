@@ -435,7 +435,7 @@ You can see all of the details of this function, below.
 
 **Definition:** `list_members(organization: entities.Organization=None, organization_id: str=None, organization_name: str=None, role: entities.MemberOrgRole=None)`
 
-**Lists all members inside of an Organization **
+***Lists all members inside of an Organization.***
 
 **Prerequisites:** You must be an organization owner to use this method. You must provide at least ONE of the following params: `organization_id`, `organization_name`, or `organization`.
 
