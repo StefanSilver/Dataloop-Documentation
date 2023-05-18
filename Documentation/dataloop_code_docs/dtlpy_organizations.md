@@ -20,7 +20,7 @@ In this Documentation we will explore all of the methods available for the `dtlp
 
 ------------------------
 
-[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | 
+[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) | [dl.organizations.list()](#list) | [dl.organizations.list_groups()](#list_groups) 
 
 ------------------------
 
@@ -296,5 +296,67 @@ Organization(members=[{'createdAt': 1673461599365, 'updatedAt': 1684341970595, '
 ```
 
 ---------------------------
+## <a name="list_groups"></a> dl.organizations.list_groups()
+The `dl.organizations.list_groups()` method allows you to list all of the Groups for an Organization you have access to.
 
+You can see all of the details of this function, below.
+
+### list_groups()
+
+**Definition:** `list_groups(organization: entities.Organization=None, organization_id: str=None, organization_name: str=None)`
+
+***Lists all organization groups (groups that were created within the organization).**
+
+**Prerequisites:** You must be an organization owner to use this method. You must provide at least ONE of the following params: `organization`, `organization_name`, or `organization_id`.
+
+**param entities.Organization organization**
+- Organization object
+
+**param str organization_id**
+- Organization id
+
+**param str organization_name**
+- Organization name
+
+**return**
+- groups list
+
+**rtype**
+- list
+
+**Example:**
+```python
+groups_list = dl.organizations.list_groups(organization_id='organization_id')
+```
+A working code would look like this, with your Organization's ID/Name:
+```python
+dl.organizations.list_groups(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01')
+#or
+dl.organizations.list_groups(organization_name='Dataloop')
+
+#or, if you want to use an Organization Object/Variable/Entity
+org_entity=dl.organizations.get(organization_name='Dataloop')
+dl.organizations.list_groups=(organization = org_entity)
+```
+
+The output will look similar to this:
+```python
+[{'members': [{'createdAt': 1635162156689,
+    'updatedAt': 1684335864862,
+    'id': 'email@dataloop.ai',
+    'username': 'email@dataloop.ai',
+    'firstName': 'firstname',
+    'lastName': 'lastname',
+    'email': 'email@dataloop.ai',
+    'avatar': 'https://lh3.googleusercontent.com/a/AATXAJwh57vW2eQpgdqtRraw5Eiic2wDIy4b7sWA9TdC=s96-c',
+    'type': None,
+    'lastLogin': 1684235662698,
+    'lastLogout': None,
+    'interest': 'dataManagement',
+    'boarded': True,
+    'hash': '3301f1d271445a55e54cce6d047eaedcc9a2a15ec78a11366e0fb31fbf2b3cff',
+    'timezone': None,
+    'cookieApproval': 1675261017431,
+    'org': '38ba8434-747a-49d4-b121-d73eec74e2f8'}]
+```
 
