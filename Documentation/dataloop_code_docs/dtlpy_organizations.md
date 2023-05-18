@@ -20,7 +20,7 @@ In this Documentation we will explore all of the methods available for the `dtlp
 
 ------------------------
 
-[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) |
+[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) | [dl.organizations.cache_action()](#cache_action)| [dl.organizations.get()](#get) 
 
 ------------------------
 
@@ -217,3 +217,46 @@ To find out your Organization's Id, run the code below, which will list all Orga
 dl.organizations.list()
 ```
 ------------
+## <a name="get"></a> dl.organizations.get()
+The `dl.organizations.get()` method allows you to `get` or activate an Organization, setting it as the active Organization in the current coding session.
+
+You can see all of the details of this function, below.
+
+### get()
+
+**Definition:** `get(organization_id: Optional[str] = None, organization_name: Optional[str] = None, fetch: Optional[bool] = None)→ Organization[source]`
+
+***Gets an Organization object to be able to use it in your code.***
+
+**Prerequisites:** You must be a ***superuser*** to use this method. You must provide at least ONE of the following params: `organization_name` or `organization_id`.
+
+
+**param organization_id (str)**
+- (optional) search by id
+
+**param organization_name (str)**
+- (optional) search by name
+
+**param fetch** 
+- (optional) fetch entity from platform, by default taken from cookie
+
+**Returns:**
+- Organization object
+
+**Return type:**
+- dtlpy.entities.organization.Organization
+
+**Example:**
+```python
+org = dl.organizations.get(organization_id='organization_id')
+```
+If you run the code below on your Organization's ID:
+```python
+dl.organizations.get(organization_id='8c8387a3-e771-4d2b-ad77-6a30294dbd01')
+```
+
+You should get an output similar to this:
+```python
+Organization(members=[{'createdAt': 1673461599365, 'updatedAt': 1684343644071, 'id': 'email@gmail.com', 'username': 'email@gmail.com', 'firstName': 'email', 'lastName': None, 'email': 'email@gmail.com', 'avatar': 'https://lh3.googleusercontent.com/a/AEdFTp6uAS-yuhaaI-EU3BFR0fgHpd1_UJ7LS2_W3pXl=s96-c', 'type': None, 'lastLogin': 1684262059553, 'lastLogout': 1680528866969, 'interest': 'dataScience', 'boarded': True, 'hash': 'c32a01dfbaf29ac953bde5afba936af81dcea03cfabd61d5f28ad3f025f41435', 'timezone': None, 'cookieApproval': 1675420416926, 'org': '18739a63-4393-43ea-a87e-9a284b14978f'}], groups=[], account={'createdAt': 1674222447241, 'updatedAt': 1674222447241, 'id': '08e52acc-107c-4503-9997-0f8e99acaef1', 'name': "ssssssss's account", 'owner': 'email@gmail.com', 'org': '8c8387a3-e771-4d2b-ad77-6a30294dbd01', 'creator': 'email@gmail.com'}, created_at=1674222447224, updated_at=1674222447257)
+```
+
