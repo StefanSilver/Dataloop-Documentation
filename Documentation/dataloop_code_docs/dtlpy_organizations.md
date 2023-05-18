@@ -20,7 +20,7 @@ In this Documentation we will explore all of the methods available for the `dtlp
 
 ------------------------
 
-[dl.organizations.add_member()](#add_member()) | [dl.organizations.delete_member()](#delete_member()) |
+[dl.organizations.add_member()](#add_member) | [dl.organizations.delete_member()](#delete_member) |
 
 ------------------------
 
