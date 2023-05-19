@@ -4,7 +4,7 @@ You can see a list of all methods below. If you want to learn about a particular
 
 ------------------
 
-[dl.items.upload()](#upload) | [dl.items.get()](#get) | [dl.items.clone()](#clone) | [get_all_items()](#get_all_items) |[dl.items.download()](#download) | [dl.items.list()](#list) | [dl.items.make_dir()](#make_dir) | [move_items()](#move_items) |  [dl.items.set_items_entity()](#set_items_entity) | [dl.items.update()](#update) | [dl.items.update_status()](#update_status) | [dl.items.delete()](#delete) 
+[How to find an Item's ID](#find_item_id) | [dl.items.upload()](#upload) | [dl.items.get()](#get) | [dl.items.clone()](#clone) | [get_all_items()](#get_all_items) |[dl.items.download()](#download) | [dl.items.list()](#list) | [dl.items.make_dir()](#make_dir) | [move_items()](#move_items) |  [dl.items.set_items_entity()](#set_items_entity) | [dl.items.update()](#update) | [dl.items.update_status()](#update_status) | [dl.items.delete()](#delete) 
 
 ------------------
 
