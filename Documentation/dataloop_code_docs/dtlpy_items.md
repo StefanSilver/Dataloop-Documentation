@@ -150,19 +150,19 @@ You can see all of the details of this function, below.
 - (optional) search by remote path
 
 **param str item_id**
-optional - search by id
+- (optional) search by id
 
 **param bool fetch**
-optional - fetch entity from platform, default taken from cookie
+- (optional) fetch entity from platform, default taken from cookie
 
 **param bool is_dir**
-True if you want to get an item from dir type
+- True if you want to get an item from dir type
 
 **return**
-Item object
+- Item object
 
 **rtype**
-dtlpy.entities.item.Item
+- dtlpy.entities.item.Item
 
 **Example:**
 ```python
