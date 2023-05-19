@@ -284,61 +284,61 @@ You can see all of the details of this function, below.
 - download Item entity or item_id (or a list of item)
 
 **param str local_path**
-local folder or filename to save to.
+- local folder or filename to save to.
 
 **param list file_types**
-a list of file type to download. e.g ['video/webm', 'video/mp4', 'image/jpeg', 'image/png']
+- a list of file type to download. e.g ['video/webm', 'video/mp4', 'image/jpeg', 'image/png']
 
 **param bool save_locally**
-bool. save to disk or return a buffer
+- bool; saves to disk or return a buffer
 
 **param bool to_array**
-returns Ndarray when True and local_path = False
+- returns Ndarray when True and local_path = False
 
 **param list annotation_options**
-download annotations options: list(dl.ViewAnnotationOptions)
+- download annotations options: list(dl.ViewAnnotationOptions)
 
 **param dtlpy.entities.filters.Filters annotation_filters**
-Filters entity to filter annotations for download
+- Filters entity to filter annotations for download
 
 **param bool overwrite**
-optional - default = False
+- optional - default = False
 
 **param bool to_items_folder**
-Create 'items' folder and download items to it
+- Create 'items' folder and download items to it
 
 **param int thickness**
-optional - line thickness, if -1 annotation will be filled, default =1
+- optional - line thickness, if -1 annotation will be filled, default =1
 
 **param bool with_text**
-optional - add text to annotations, default = False
+- optional - add text to annotations, default = False
 
 **param bool without_relative_path**
-bool - download items without the relative path from platform
+- bool - download items without the relative path from platform
 
 **param bool avoid_unnecessary_annotation_download**
-default - False
+- default - False
 
 **param bool include_annotations_in_output**
-default - False , if export should contain annotations
+- default - False , if export should contain annotations
 
 **param bool export_png_files**
-default - if True, semantic annotations should be exported as png files
+- default - if True, semantic annotations should be exported as png files
 
 **param bool filter_output_annotations**
-default - False, given an export by filter - determine if to filter out annotations
+- default - False, given an export by filter - determine if to filter out annotations
 
 **param float alpha**
-opacity value [0 1], default 1
+- opacity value [0 1], default 1
 
 **param str export_version**
-exported items will have original extension in filename, V1 - no original extension in filenames
+- exported Items will have original extension in filename, V1 - no original extension in filenames
 
 **return**
-generator of local_path per each downloaded item
+- generator of local_path per each downloaded Item
 
 **rtype**
-generator or single item
+- generator or single Item
 
 **Example:**
 ```python
