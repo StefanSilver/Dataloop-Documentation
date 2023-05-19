@@ -657,22 +657,22 @@ You can see all of the details of this function, below.
 **Prerequisites:** You must be in the role of an Owner or Developer or Annotation Manager who has been assigned a Task with the Item. You must provide at least ONE of the following params: `items`, `item_ids`, `filters`.
 
 **param str status**
-ItemStatus.COMPLETED, ItemStatus.APPROVED, ItemStatus.DISCARDED
+- ItemStatus.COMPLETED, ItemStatus.APPROVED, ItemStatus.DISCARDED
 
 **param list items**
-list of items
+- list of Items
 
 **param list item_ids**
-list of items id
+- list of Items id
 
 **param dtlpy.entities.filters.Filters filters**
-Filters entity or a dictionary containing filters parameters
+- Filters entity or a dictionary containing filters parameters
 
 **param dtlpy.entities.dataset.Dataset dataset**
-dataset object
+- Dataset object
 
 **param bool clear**
-to delete status
+- to delete status
 
 **Example:**
 ```python
@@ -780,7 +780,7 @@ d_set.items.delete(item_id='64674d33aaa6f09803d166dc')
 ```
 This code will delete the Item we uploaded at the beginning of this document. If everything goes right, you will get a simple `True` boolean return.
 
-----------------
+
 
 -------------------------
 ## Final Words
